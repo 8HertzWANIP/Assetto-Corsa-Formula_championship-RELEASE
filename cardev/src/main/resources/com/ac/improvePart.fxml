@@ -24,7 +24,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="97.0">
                      <children>
                         <Rectangle fx:id="recTeamColor" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="-6.0" stroke="BLACK" strokeType="INSIDE" width="1286.0" />
-                        <TextField fx:id="txtMoney" alignment="CENTER_RIGHT" editable="false" layoutX="37.0" layoutY="141.0" prefHeight="7.0" prefWidth="180.0" promptText="Funds">
+                        <TextField fx:id="txtMoney" alignment="CENTER_RIGHT" editable="false" layoutX="69.0" layoutY="141.0" prefHeight="29.0" prefWidth="148.0" promptText="Funds">
                            <font>
                               <Font name="Verdana" size="15.0" />
                            </font>
@@ -35,7 +35,7 @@
                            </font>
                         </TextField>
                         <Button fx:id="btnMoney" layoutX="115.0" layoutY="218.0" mnemonicParsing="false" onAction="#btnMoneyClick" prefHeight="29.0" prefWidth="102.0" text="Button" visible="false" />
-                        <TextField fx:id="txtResearch" alignment="CENTER" layoutX="170.0" layoutY="100.0" onKeyTyped="#txtResearchChanged" prefHeight="29.0" prefWidth="47.0" text="0">
+                        <TextField fx:id="txtResearch" alignment="CENTER" editable="false" layoutX="170.0" layoutY="100.0" onKeyTyped="#txtResearchChanged" prefHeight="29.0" prefWidth="47.0" text="0">
                            <font>
                               <Font name="Verdana" size="15.0" />
                            </font>
@@ -129,6 +129,18 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
+                        <Label layoutX="37.0" layoutY="141.0" text="€">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
                      </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="553.0">
                      <children>

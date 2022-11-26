@@ -434,7 +434,7 @@ public class aeroImprove extends App implements Initializable{
                 if (improveDownforceFunds > 0) {
                     maxDfLimiter = 10 - (((100 * (currentDownforce + dfIncrease)) / maxDf));
                     System.out.println("maxDfLimiter: ["+maxDfLimiter+"]");
-                    dfIncrease += ((improvement * i) * season.getAeroIncreaseRate()) * maxDfLimiter;
+                    dfIncrease += ((improvement * i) * season.getAeroIncreaseRatePlayer()) * maxDfLimiter;
                     newDForceCost += (newDForceCost * 0.25) * i;
                 }
             }
@@ -449,6 +449,7 @@ public class aeroImprove extends App implements Initializable{
             }
         }
     }
+    
 
     // ------------------------------------------ \\
     // ------------- CALCULATE DRAG ------------- \\
@@ -492,7 +493,7 @@ public class aeroImprove extends App implements Initializable{
                 if (improveDragFunds > 0) {
                     maxDragLimiter = 10 - (((100 * (currentDrag + dragDecrease)) / maxDr));
                     System.out.println("maxDragLimiter: ["+maxDragLimiter+"]");
-                    dragDecrease += ((improvement * i) * season.getDragIncreaseRate()) * maxDragLimiter;
+                    dragDecrease += ((improvement * i) * season.getDragIncreaseRatePlayer()) * maxDragLimiter;
                     newDragCost += (newDragCost * 0.25) * i;
                 }
             }

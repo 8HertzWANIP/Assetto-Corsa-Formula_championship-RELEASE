@@ -79,11 +79,19 @@ public class seasonSettings {
 
     
     public Double getAeroIncreaseRate() {
-        return aeroIncreaseRate * getDifficulty();
+        return aeroIncreaseRate * returnDifficultyValue(getDifficulty());
     }
 
     public Double getDragIncreaseRate() {
-        return aeroIncreaseRate * getDifficulty();
+        return aeroIncreaseRate * returnDifficultyValue(getDifficulty());
+    }
+    
+    public Double getAeroIncreaseRatePlayer() {
+        return aeroIncreaseRate * returnDifficultyValue(2);
+    }
+
+    public Double getDragIncreaseRatePlayer() {
+        return aeroIncreaseRate * returnDifficultyValue(2);
     }
     
     public String getProfileName() {
@@ -143,16 +151,16 @@ public class seasonSettings {
     public float returnDifficultyValue(int difficultyValue) {
         switch (difficultyValue) {
             case 0:
-                return 0.8f;
+                return 1.8f;
             
             case 1:
-                return 0.9f;
+                return 1.9f;
             
             case 2:
-                return 0.95f;
+                return 2f;
             
             case 3:
-                return 1.05f;
+                return 2.1f;
             default:
                 System.out.println("Difficulty not found,, returning 0.9");
                 return 0.9f;
