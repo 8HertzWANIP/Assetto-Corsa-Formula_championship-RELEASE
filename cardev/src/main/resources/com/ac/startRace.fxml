@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.startRace">
+  <children>
+    <AnchorPane fx:id="paneRace" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <CheckBox fx:id="chkPreSeasonTesting" layoutX="1022.0" layoutY="569.0" mnemonicParsing="false" text="Skip pre-season testing">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="btnStartRace" layoutX="1134.0" layoutY="608.0" mnemonicParsing="false" onAction="#btnStartRaceClick" text="Start Session">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnFinishRace" disable="true" layoutX="1149.0" layoutY="662.0" mnemonicParsing="false" onAction="#btnFinishRaceClick" text="Finish Race">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCancelRace" disable="true" layoutX="14.0" layoutY="662.0" mnemonicParsing="false" onAction="#btnCancelRaceClick" text="Cancel Race">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblRaceCount" layoutX="1005.0" layoutY="14.0" text="Race - / -">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLoadingTeam" alignment="CENTER" layoutX="294.0" layoutY="647.0" text="Loading Team: ...">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Button fx:id="btnReturn" layoutX="38.0" layoutY="608.0" mnemonicParsing="false" onAction="#btnReturnClick" text="Return">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblPreseasonTesting" layoutX="972.0" layoutY="87.0" text="Pre-season testing">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="14.0" text="Preparing next race">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

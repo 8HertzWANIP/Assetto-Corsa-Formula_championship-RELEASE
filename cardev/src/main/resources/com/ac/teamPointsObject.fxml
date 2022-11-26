@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="VBox" prefHeight="50.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.backend.teamPointsObject">
+  <children>
+      <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Rectangle fx:id="recTeamIcon" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+            <Rectangle fx:id="recTeamColor" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+            <Rectangle fx:id="recTeamName" arcWidth="5.0" fill="#c9c9c9" height="40.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
+               <effect>
+                  <DropShadow height="5.0" offsetX="1.0" offsetY="2.0" radius="6.0" spread="0.1">
+                     <color>
+                        <Color red="0.4736842215061188" green="0.4736842215061188" blue="0.4736842215061188" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Rectangle>
+            <Rectangle fx:id="recTeamPoints" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" layoutX="936.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+            <Label fx:id="lblTeamName" layoutX="70.0" layoutY="-2.0" prefHeight="45.0" prefWidth="700.0" text="Team Name">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTeamPoints" alignment="CENTER" contentDisplay="CENTER" layoutX="936.0" prefHeight="50.0" prefWidth="50.0" text="100" textAlignment="CENTER">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnDriver1" layoutX="770.0" layoutY="3.0" mnemonicParsing="false" onAction="#btnDriver1Click" text="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnDriver2" layoutX="815.0" layoutY="3.0" mnemonicParsing="false" onAction="#btnDriver2Click" text="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnFastestLap" layoutX="858.0" layoutY="5.0" mnemonicParsing="false" onAction="#btnFastestLapClick" text="FL">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Label fx:id="lblTeamChampPos" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="50.0" text="0" textAlignment="CENTER">
+               <font>
+                  <Font size="27.0" />
+               </font>
+               <effect>
+                  <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Label>
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

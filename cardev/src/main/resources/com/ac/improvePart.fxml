@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.aeroImprove">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <SplitPane dividerPositions="0.2" prefHeight="720.0" prefWidth="1280.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="97.0">
+                     <children>
+                        <Rectangle fx:id="recTeamColor" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="720.0" layoutX="-6.0" stroke="BLACK" strokeType="INSIDE" width="1286.0" />
+                        <TextField fx:id="txtMoney" alignment="CENTER_RIGHT" editable="false" layoutX="37.0" layoutY="141.0" prefHeight="7.0" prefWidth="180.0" promptText="Funds">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtMoneyModifyer" alignment="CENTER_RIGHT" layoutX="37.0" layoutY="180.0" prefHeight="29.0" prefWidth="180.0" promptText="add/sub funds" visible="false">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="btnMoney" layoutX="115.0" layoutY="218.0" mnemonicParsing="false" onAction="#btnMoneyClick" prefHeight="29.0" prefWidth="102.0" text="Button" visible="false" />
+                        <TextField fx:id="txtResearch" alignment="CENTER" layoutX="170.0" layoutY="100.0" onKeyTyped="#txtResearchChanged" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="37.0" layoutY="102.0" text="Research Level">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="68.0" layoutY="14.0" text="----- TEAM -----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtTeamName" alignment="CENTER" editable="false" layoutX="37.0" layoutY="45.0" prefHeight="7.0" prefWidth="180.0" promptText="teamName">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtChhampPoints" alignment="CENTER" editable="false" layoutX="186.0" layoutY="294.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="14.0" layoutY="296.0" text="Championship Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChampPos" alignment="CENTER" editable="false" layoutX="186.0" layoutY="351.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="8.0" layoutY="353.0" text="Championship Position">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <ComboBox fx:id="cmbSelectedTeam" layoutX="52.0" layoutY="47.0" onAction="#cmbSelectTeam" prefWidth="150.0" />
+                        <TextField fx:id="txtAeroRating" alignment="CENTER" editable="false" layoutX="176.0" layoutY="407.0" prefHeight="29.0" prefWidth="57.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="34.0" layoutY="409.0" text="Car Aero Rating">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Button fx:id="btnPerformanceChart" layoutX="69.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnPerformanceChartClick" text="Performance Index" />
+                        <Button fx:id="btnResetCars" layoutX="92.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnResetCars" text="Reset Cars" visible="false" />
+                        <Button fx:id="btnChampStandings" layoutX="54.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnChampStandingsClick" text="Championship Standings" />
+                        <Button fx:id="btnRunAI" layoutX="52.0" layoutY="637.0" mnemonicParsing="false" onAction="#btnRunAiClick" text="Start next race">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="553.0">
+                     <children>
+                        <TabPane prefHeight="718.0" prefWidth="1019.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Arodynamics">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField fx:id="txtDrag" alignment="CENTER" editable="false" layoutX="295.0" layoutY="297.0" onKeyReleased="#investmentChanged">
+                                             <font>
+                                                <Font name="Verdana" size="33.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField fx:id="txtDownforce" alignment="CENTER" editable="false" layoutX="294.0" layoutY="189.0" onKeyReleased="#investmentChanged">
+                                             <font>
+                                                <Font name="Verdana" size="33.0" />
+                                             </font>
+                                          </TextField>
+                                          <Slider fx:id="sldImprove" blockIncrement="5.0" layoutX="294.0" layoutY="435.0" minorTickCount="5" onMouseClicked="#sliderChanged" onMouseDragged="#sliderChanged" onMouseReleased="#sliderChanged" prefHeight="64.0" prefWidth="430.0" showTickMarks="true" snapToTicks="true" value="50.0" />
+                                          <Button fx:id="btnImprove" layoutX="385.0" layoutY="563.0" mnemonicParsing="false" onAction="#improveConfirm" prefHeight="65.0" prefWidth="249.0" text="Improve">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Button>
+                                          <TextField fx:id="txtPartName" alignment="CENTER" editable="false" layoutX="295.0" layoutY="65.0">
+                                             <font>
+                                                <Font name="Verdana" size="33.0" />
+                                             </font>
+                                          </TextField>
+                                          <Button fx:id="btnPartNext" layoutX="747.0" layoutY="72.0" mnemonicParsing="false" onAction="#selectNextPart" prefHeight="21.0" prefWidth="213.0" text="--&gt;">
+                                             <font>
+                                                <Font size="23.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="btnPartPrev" layoutX="63.0" layoutY="72.0" mnemonicParsing="false" onAction="#selectPrevPart" prefHeight="21.0" prefWidth="213.0" text="&lt;--">
+                                             <font>
+                                                <Font size="23.0" />
+                                             </font>
+                                          </Button>
+                                          <TextField fx:id="txtCost" alignment="CENTER" editable="false" layoutX="318.0" layoutY="511.0" prefHeight="39.0" prefWidth="384.0" promptText="COST" visible="false">
+                                             <font>
+                                                <Font name="Verdana" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <TextField fx:id="txtInvestment" layoutX="389.0" layoutY="384.0" onKeyTyped="#investmentChanged" prefHeight="39.0" prefWidth="261.0" promptText="INVESTMENT">
+                                             <font>
+                                                <Font name="Verdana" size="20.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label fx:id="lblPlusDownforce" layoutX="746.0" layoutY="199.0" prefHeight="45.0" prefWidth="100.0" textFill="#00cc00" textOverrun="CLIP">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblPlusDrag" layoutX="746.0" layoutY="307.0" prefHeight="45.0" prefWidth="100.0" textFill="#00cc00" textOverrun="CLIP">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblMinusDownforce" layoutX="174.0" layoutY="199.0" prefHeight="45.0" prefWidth="100.0" textFill="#cc0000" textOverrun="CLIP">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="lblMinusDrag" layoutX="174.0" layoutY="307.0" prefHeight="45.0" prefWidth="100.0" textFill="#cc0000" textOverrun="CLIP">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="456.0" layoutY="148.0" text="Downforce">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="486.0" layoutY="259.0" text="Drag">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="310.0" layoutY="384.0" text="€">
+                                             <font>
+                                                <Font size="28.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="276.0" layoutY="483.0" text="Drag">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="664.0" layoutY="479.0" text="Downforce">
+                                             <font>
+                                                <Font size="22.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab disable="true" text="Engine">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </Tab>
+                              <Tab disable="true" text="Car &amp; Brakes">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
