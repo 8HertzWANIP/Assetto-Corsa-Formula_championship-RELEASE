@@ -162,7 +162,7 @@ public class seasonSettings {
             case 3:
                 return 2.1f;
             default:
-                System.out.println("Difficulty not found,, returning 0.9");
+                System.out.println("Difficulty not found, returning 0.9");
                 return 0.9f;
         }
     }

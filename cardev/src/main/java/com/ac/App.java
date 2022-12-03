@@ -27,7 +27,7 @@ import com.ac.backend.fileReader;
  * JavaFX App
  */
 public class App extends Application {
-    protected static String currentVersion = "ALPHA-v0.1";
+    protected static String currentVersion = "ALPHA-v0.1.1";
 
     fileReader fParser = new fileReader();
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();
@@ -38,9 +38,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        String url = "https://api.github.com/repos/8HertzWANIP/Assetto-Corsa-Formula-Championship-DEV/releases/latest";
+        String url = "https://api.github.com/repos/8HertzWANIP/Assetto-Corsa-Formula_championship-RELEASE/releases/latest";
         Boolean appUpToDate = true;
-
         // Call github API to get release version of public repo
     	try {
             HttpResponse response;

@@ -6,7 +6,7 @@ public interface aiAPI {
     public static int getCycleIndex(int[] cycle, seasonSettings season) {
         int length = cycle.length;
         int currentRace = season.getCurrentRace();
-        while(currentRace > length) {
+        while(currentRace >= length) {
             currentRace -= length;
         }
         return currentRace;
