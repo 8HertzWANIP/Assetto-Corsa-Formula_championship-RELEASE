@@ -48,11 +48,14 @@ public class champStandings extends App implements Initializable {
         0,
         0,
         0,
+        0,
         false,
         false,
         false,
-        false
-    );
+        false,
+        null,
+        null
+        );
     public static int loadingTeamIndex = 0;
 
     public static ArrayList<teamSetup> getLoadedTeams() {

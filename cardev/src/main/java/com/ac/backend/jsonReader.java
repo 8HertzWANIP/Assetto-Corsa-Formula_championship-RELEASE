@@ -1,17 +1,19 @@
 package com.ac.backend;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 import javax.swing.JFileChooser;
 
 import com.ac.App;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class jsonReader extends App{
 
-    public seasonSettings parseSeasonSettings() {
+    public static seasonSettings parseSeasonSettings() {
         seasonSettings season = new seasonSettings(
             "",
             0,
@@ -24,14 +26,19 @@ public class jsonReader extends App{
             0f,
             0f,
             1000,
+            0f,
             0,
             0,
             0,
             false,
             false,
             false,
-            false
+            false,
+            null,
+            null
         );
+        File directory = new File(new JFileChooser().getFileSystemView().getDefaultDirectory().toString() + "\\Ac Cardev save data\\"+loadedProfile);
+
         try {
             String pathToFile = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() + "\\Ac Cardev save data\\" + loadedProfile;
             String path = pathToFile + "\\season_settings.json";
@@ -39,33 +46,50 @@ public class jsonReader extends App{
     
             Gson gson = new Gson();
             JsonObject js = gson.fromJson(bufferedReader, JsonObject.class);
-    
-            season = new seasonSettings(
-                js.get("profileName").getAsString(),
-                Integer.parseInt(js.get("teamCount").getAsString()),
-                Integer.parseInt(js.get("raceCount").getAsString()),
-                Integer.parseInt(js.get("raceLength").getAsString()),
-                Integer.parseInt(js.get("fuelTankSize").getAsString()),
-                Integer.parseInt(js.get("totalPrizePool").getAsString()),
-                Float.parseFloat(js.get("maxDownforce").getAsString()),
-                Float.parseFloat(js.get("minDownforce").getAsString()),
-                Float.parseFloat(js.get("minDrag").getAsString()),
-                Float.parseFloat(js.get("maxDrag").getAsString()),
-                1000,
-                Integer.parseInt(js.get("difficulty").getAsString()),
-                Integer.parseInt(js.get("raceRewards").getAsString()),
-                Integer.parseInt(js.get("currentRace").getAsString()),
-                js.get("equalDev").getAsBoolean(),
-                js.get("equalFunds").getAsBoolean(),
-                js.get("raceCanceled").getAsBoolean(),
-                js.get("preseasonTestingCompleted").getAsBoolean()
-            );
-            System.out.println("Loaded profile: [" + season.profileName + "]");
+
+            
+            season = jsonUpdater.updateSeasonSettings(js, true);
             
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (directory.exists()) {
+                System.out.println("File name: " + directory.getName());
+                System.out.println("Absolute path: " + directory.getAbsolutePath());
+                System.out.println("Writeable: " + directory.canWrite());
+                System.out.println("Readable " + directory.canRead());
+                System.out.println("File size in bytes " + directory.length());
+            } else {
+                System.out.println("The file does not exist.");
+            }
         }
         return season;
+    }
+
+    public static float[] jsonArrayToFloatArray(JsonArray array) {
+        float[] floatArray = new float[array.size()];
+        System.out.println(array.size());
+        if (array.size() > 0) {
+            for (int i = 0; i < array.size(); i++) {
+                if(array.get(i) != null) {
+                    floatArray[i] =  array.get(i).getAsFloat();
+                }
+            }
+        }
+        return floatArray;
+    }
+
+    public static int[] jsonArrayToIntArray(JsonArray array) {
+        int[] intArray = new int[array.size()];
+        System.out.println(array.get(0));
+        if (array.size() > 0) {
+            for (int i = 0; i < array.size(); i++) {
+                if(array.get(i) != null) {
+                    intArray[i] = array.get(i).getAsInt();
+                }
+            }
+        }
+        return intArray;
     }
 
     public teamSetup parseTeam(String targetTeam) {

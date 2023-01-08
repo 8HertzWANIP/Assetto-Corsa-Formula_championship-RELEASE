@@ -18,7 +18,6 @@ import com.ac.backend.fileReader;
  */
 public class aiController {
     jsonReader jReader = new jsonReader();
-    jsonWriter jWriter = new jsonWriter();
     fileReader fReader = new fileReader();
     ArrayList<teamSetup> loadedTeams = new ArrayList<teamSetup>();
     ArrayList<aeroPart> aeroParts = new ArrayList<aeroPart>();
@@ -37,11 +36,14 @@ public class aiController {
         0,
         0,
         0,
+        0,
         false,
         false,
         false,
-        false
-    );
+        false,
+        null,
+        null
+        );
     
     float dForceCost;
     float dragCost;
@@ -62,7 +64,6 @@ public class aiController {
     Double dragDecrease = 0d;
 
     int partInvestment;
-    int aiSpendLimit = 250000;
     public int fwAngle;
     public int rwAngle;
     public String loadingLabelString;
@@ -76,7 +77,7 @@ public class aiController {
     }
 
     public void init(ArrayList<String> teamList) throws InterruptedException {
-        season = jReader.parseSeasonSettings();
+        season = jsonReader.parseSeasonSettings();
 
         maxDf = season.baseline * (season.maxDownforce / 100);
         minDf = season.baseline * (season.minDownforce / 100);

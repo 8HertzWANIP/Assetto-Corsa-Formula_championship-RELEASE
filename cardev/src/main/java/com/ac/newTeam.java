@@ -31,6 +31,7 @@ public class newTeam extends App implements Initializable {
     jsonReader jsonLoader = new jsonReader();
     seasonSettings season = jsonLoader.parseSeasonSettings();
     carScaler carScaler = new carScaler();
+    String strParentDirectory;
     int teamIndex = 1;
     int teamCount = season.getTeamCount();
     jsonWriter writer = new jsonWriter();
@@ -371,6 +372,11 @@ public class newTeam extends App implements Initializable {
         lblTeamCounter.setText(teamIndex + "/" + jsonLoader.parseSeasonSettings().getTeamCount());
         ArrayList<String> controllersArrayList = new ArrayList<String>();
 
+        File file = new File(System.getProperty("user.dir"));
+        strParentDirectory = file.getParent() + "\\content\\cars";
+        System.out.println("Parent directory is : " + strParentDirectory);
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
         for (String controller : controllers) {
             controllersArrayList.add(controller);
         }
@@ -383,5 +389,15 @@ public class newTeam extends App implements Initializable {
         cmbController.setItems(FXCollections.observableArrayList(controllersArrayList));
         cmbPrevPos.setItems(FXCollections.observableArrayList(positions));
         cmbPrevPos.setValue(0);
+
+        if (strParentDirectory.contains("assettocorsa")) {
+            txtContentCars.setText(strParentDirectory);
+            pathToCarFolder = strParentDirectory;
+            System.out.println("carFolder: [" + pathToCarFolder + "]");
+    
+            if (pathToCarFolder.contains("content\\cars") || pathToCarFolder.contains("content/cars")) {
+                txtCarFolder.setDisable(false);
+            }
+        }
     }
 }

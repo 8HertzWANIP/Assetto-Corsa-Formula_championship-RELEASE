@@ -32,10 +32,13 @@ public class teamPointsObject extends champPoints {
         0,
         0,
         0,
+        0,
         false,
         false,
         false,
-        false
+        false,
+        null,
+        null
     );
     
     @FXML
@@ -104,7 +107,7 @@ public class teamPointsObject extends champPoints {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         index = loadingTeamIndex;
-        season = jReader.parseSeasonSettings();
+        season = jsonReader.parseSeasonSettings();
         if (champPoints.getLoadingTeamIndex() > loadedTeams.size()) {
             champPoints.setLoadingTeamIndex(0);
         }

@@ -5,9 +5,11 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <VBox onKeyReleased="#onKeyReleasedScene" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.newTeam">
@@ -45,6 +47,8 @@
             <Label layoutX="356.0" layoutY="491.0" text="Previous season finishing position" />
             <Label layoutX="449.0" layoutY="358.0" text="Team Controller" />
             <Label layoutX="449.0" layoutY="422.0" text="Team Car Folder" />
+            <TextArea layoutX="913.0" layoutY="387.0" prefHeight="200.0" prefWidth="322.0" text="Sometimes the browse button &quot;freezes&quot; the app.&#10;&#10;If the app stops responding after pressing the browse &#10;button move the main window to the side.&#10;&#10;The browse button should be behind the main window &#10;and fully functioning. When the assetto corsa cars folder&#10;has been selected the main window should start&#10;functioning like normal." />
+            <Line endX="7.0" endY="-0.5" layoutX="906.0" layoutY="398.0" startX="-31.0" startY="-0.5" />
          </children>
     </AnchorPane>
   </children>

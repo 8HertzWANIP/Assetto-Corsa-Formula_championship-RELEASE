@@ -15,6 +15,7 @@ public class seasonSettings {
     public float minDrag;
     public float maxDrag;
     public float baseline;
+    public float participationPrizeRate;
     public int difficulty;
     public int raceRewards;
     public int currentRace;
@@ -22,17 +23,17 @@ public class seasonSettings {
     public boolean equalFunds;
     public boolean raceCanceled;
     public boolean preseasonTestingCompleted;
-
+    public int[] seasonPointAwards = {};
+    public float[] seasonPrizeAwards = {};
 
     public Double aeroIncreaseRate = 0.3d;
     public Double dragIncreaseRate = 0.4d;
 
-    
-
     public seasonSettings(String profileName, int teamCount, int raceCount, int raceLength, int fuelTankSize,
             int totalPrizePool, float maxDownforce, float minDownforce, float minDrag, float maxDrag, float baseline,
-            int difficulty, int raceRewards, int currentRace, boolean equalDev, boolean equalFunds, boolean raceCanceled,
-            boolean preseasonTestingCompleted) {
+            float participationPrizeRate, int difficulty, int raceRewards, int currentRace, boolean equalDev,
+            boolean equalFunds, boolean raceCanceled, boolean preseasonTestingCompleted, int[] seasonPointAwards,
+            float[] seasonPrizeAwards) {
         this.profileName = profileName;
         this.teamCount = teamCount;
         this.raceCount = raceCount;
@@ -44,6 +45,7 @@ public class seasonSettings {
         this.minDrag = minDrag;
         this.maxDrag = maxDrag;
         this.baseline = baseline;
+        this.participationPrizeRate = participationPrizeRate;
         this.difficulty = difficulty;
         this.raceRewards = raceRewards;
         this.currentRace = currentRace;
@@ -51,6 +53,33 @@ public class seasonSettings {
         this.equalFunds = equalFunds;
         this.raceCanceled = raceCanceled;
         this.preseasonTestingCompleted = preseasonTestingCompleted;
+        this.seasonPointAwards = seasonPointAwards;
+        this.seasonPrizeAwards = seasonPrizeAwards;
+    }
+
+
+    public float getParticipationPrizeRate() {
+        return participationPrizeRate;
+    }
+
+    public void setParticipationPrizeRate(float participationPrizeRate) {
+        this.participationPrizeRate = participationPrizeRate;
+    }
+
+    public int[] getSeasonPointAwards() {
+        return seasonPointAwards;
+    }
+
+    public void setSeasonPointAwards(int[] seasonPointAwards) {
+        this.seasonPointAwards = seasonPointAwards;
+    }
+
+    public float[] getSeasonPrizeAwards() {
+        return seasonPrizeAwards;
+    }
+
+    public void setSeasonPrizeAwards(float[] seasonPrizeAwards) {
+        this.seasonPrizeAwards = seasonPrizeAwards;
     }
     
     public int getCurrentRace() {
@@ -148,32 +177,6 @@ public class seasonSettings {
     public void setBaseline(float baseline) {
         this.baseline = baseline;
     }
-    public float returnDifficultyValue(int difficultyValue) {
-        switch (difficultyValue) {
-            case 0:
-                return 1.8f;
-            
-            case 1:
-                return 1.9f;
-            
-            case 2:
-                return 2f;
-            
-            case 3:
-                return 2.1f;
-            default:
-                System.out.println("Difficulty not found, returning 0.9");
-                return 0.9f;
-        }
-    }
-    public int returnFinishingPositionPoints(int position) {
-        ArrayList<Integer> pointsList = new ArrayList<Integer>(Arrays.asList(25, 18, 15, 12, 10, 8, 6, 4, 2, 1));
-        if (position > pointsList.size()){
-            return 0;
-        } else {
-            return pointsList.get(position - 1);
-        }
-    }
 
     public int getRaceLength() {
         return raceLength;
@@ -221,5 +224,32 @@ public class seasonSettings {
 
     public void setEqualFunds(boolean equalFunds) {
         this.equalFunds = equalFunds;
+    }
+
+    public float returnDifficultyValue(int difficultyValue) {
+        switch (difficultyValue) {
+            case 0:
+                return 1.8f;
+            
+            case 1:
+                return 1.9f;
+            
+            case 2:
+                return 2f;
+            
+            case 3:
+                return 2.1f;
+            default:
+                System.out.println("Difficulty not found, returning 0.9");
+                return 0.9f;
+        }
+    }
+
+    public int returnFinishingPositionPoints(int position) {
+        if (position > seasonPointAwards.length){
+            return 0;
+        } else {
+            return seasonPointAwards[position - 1];
+        }
     }
 }

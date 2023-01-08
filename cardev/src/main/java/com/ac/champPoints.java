@@ -55,10 +55,13 @@ public class champPoints extends App implements Initializable {
         0,
         0,
         0,
+        0,
         false,
         false,
         false,
-        false
+        false,
+        null,
+        null
     );
     public static int loadingTeamIndex = 0;
     public static int finishingPosition = 1;
@@ -147,6 +150,9 @@ public class champPoints extends App implements Initializable {
         }
         saveTeamFilePointsInfo();
         fastestLapPoints = 1;
+        season.setRaceCanceled(false);
+        season.setCurrentRace(season.getCurrentRace() + 1);
+        jsonWriter.saveSeasonSettings(season);
         App.setRoot("champStandings");
     }
 
@@ -173,107 +179,61 @@ public class champPoints extends App implements Initializable {
     }
 
     public void addMoneyToTeam(int teamIndex) {
+        season = jsonReader.parseSeasonSettings();
+        int prizeMoney = returnRaceRewardMoney(finishingPosition - 1, season.getRaceCount(), season.getTeamCount(), false);
+        System.out.println("team: [ "+ loadedTeams.get(teamIndex).getTeamName() + "] awarded: [" + prizeMoney + "] with participation prize of: [" + returnRaceRewardMoney(-1, season.getRaceCount(), season.getTeamCount(), true) + "]");
+        System.out.println("total prize money: [" + (prizeMoney + returnRaceRewardMoney(-1, season.getRaceCount(), season.getTeamCount(), true))+ "]");
+        moneyListToAdd.set(teamIndex, moneyListToAdd.get(teamIndex) + prizeMoney);
+    }
 
-        // TODO Season settings are being reset. Find out why.
-        season = jReader.parseSeasonSettings();
-        int raceRewardTotal = 0;
-        int cashReward = 0;
-        switch (season.raceRewards) {
-            // Race + Season rewards
+    int returnRaceRewardMoney(int position, int totalRaces, int teamCount, boolean  returnParticiaptionPrize) {
+        int seasonBudget = season.getTotalPrizePool() * 1000000;
+        int reward = 0;
+        int perRaceBudget = 0;
+        int positionPrizeMoney = 0;
+        int participationPrize = 0;
+        float participationPrizeRate = season.getParticipationPrizeRate();
+        float posPrizeRate = 1f - participationPrizeRate;
+        switch (season.getRaceRewards()) {
             case 0:
-                // Convert season rewards to millions
-                raceRewardTotal = ((season.getTotalPrizePool() * 1000000) / 2) / season.getRaceCount() / 2;
-                cashReward = 0;
-                switch (finishingPosition) {
-                    case 1:
-                        cashReward += Math.round(raceRewardTotal * 0.19f);
-                        break;
-                    case 2:
-                        cashReward += Math.round(raceRewardTotal * 0.16f);
-                        break;
-                    case 3:
-                        cashReward += Math.round(raceRewardTotal * 0.13f);
-                        break;
-                    case 4:
-                        cashReward += Math.round(raceRewardTotal * 0.11f);
-                        break;
-                    case 5:
-                        cashReward += Math.round(raceRewardTotal * 0.10f);
-                        break;
-                    case 6:
-                        cashReward += Math.round(raceRewardTotal * 0.09f);
-                        break;
-                    case 7:
-                        cashReward += Math.round(raceRewardTotal * 0.07f);
-                        break;
-                    case 8:
-                        cashReward += Math.round(raceRewardTotal * 0.06f);
-                        break;
-                    case 9:
-                        cashReward += Math.round(raceRewardTotal * 0.05f);
-                        break;
-                    case 10:
-                        cashReward += Math.round(raceRewardTotal * 0.04f);
-                        break;
-                
-                    default:
-                        break;
+                seasonBudget = seasonBudget / 2;
+                perRaceBudget = Math.round((seasonBudget / totalRaces));
+                if (!returnParticiaptionPrize && position < season.getSeasonPrizeAwards().length) {
+                    positionPrizeMoney = Math.round((perRaceBudget * posPrizeRate) * season.getSeasonPrizeAwards()[position]);
+                } else if (returnParticiaptionPrize){
+                    participationPrize = Math.round((perRaceBudget * participationPrizeRate) / teamCount);
                 }
-                moneyListToAdd.set(teamIndex, moneyListToAdd.get(teamIndex) + cashReward);
-                System.out.println("money to add to team: [" + loadedTeams.get(teamIndex).getTeamName() + "] - [" + moneyListToAdd.get(teamIndex) + "]");
+                
                 break;
-            // Race Rewards only
             case 1:
-                // Convert season rewards to millions
-                raceRewardTotal = ((season.getTotalPrizePool() * 1000000)) / season.getRaceCount() / 2;
-                cashReward = 0;
-                switch (finishingPosition) {
-                    case 1:
-                        cashReward += Math.round(raceRewardTotal * 0.19f);
-                        break;
-                    case 2:
-                        cashReward += Math.round(raceRewardTotal * 0.16f);
-                        break;
-                    case 3:
-                        cashReward += Math.round(raceRewardTotal * 0.13f);
-                        break;
-                    case 4:
-                        cashReward += Math.round(raceRewardTotal * 0.11f);
-                        break;
-                    case 5:
-                        cashReward += Math.round(raceRewardTotal * 0.10f);
-                        break;
-                    case 6:
-                        cashReward += Math.round(raceRewardTotal * 0.09f);
-                        break;
-                    case 7:
-                        cashReward += Math.round(raceRewardTotal * 0.07f);
-                        break;
-                    case 8:
-                        cashReward += Math.round(raceRewardTotal * 0.06f);
-                        break;
-                    case 9:
-                        cashReward += Math.round(raceRewardTotal * 0.05f);
-                        break;
-                    case 10:
-                        cashReward += Math.round(raceRewardTotal * 0.04f);
-                        break;
-                
-                    default:
-                        break;
+                perRaceBudget = Math.round((seasonBudget / totalRaces));
+                if (!returnParticiaptionPrize && position < season.getSeasonPrizeAwards().length) {
+                    positionPrizeMoney = Math.round((perRaceBudget * posPrizeRate) * season.getSeasonPrizeAwards()[position]);
+                } else if (returnParticiaptionPrize){
+                    participationPrize = Math.round((perRaceBudget * participationPrizeRate) / teamCount);
                 }
-                moneyListToAdd.set(teamIndex, moneyListToAdd.get(teamIndex) + cashReward);
-                System.out.println("money to add to team: [" + loadedTeams.get(teamIndex).getTeamName() + "] - [" + moneyListToAdd.get(teamIndex) + "]");
+                
+                break;
+            case 2:
+                
                 break;
         
             default:
                 break;
         }
+        if (season.getRaceRewards() != 2) {
+            if (returnParticiaptionPrize) {
+                reward = participationPrize;
+            } else {
+                reward = positionPrizeMoney;
+            }
+        }
+        return reward;
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        season = jReader.parseSeasonSettings();
+        season = jsonReader.parseSeasonSettings();
 
         if (loadedTeams.size() == 0) {
             loadTeamlist();
@@ -283,29 +243,12 @@ public class champPoints extends App implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int raceRewardTotal = 0;
-        int cashReward = 0;
-        switch (season.raceRewards) {
-            // Race + Season rewards
-            case 0:
-                // Convert season rewards to millions
-                raceRewardTotal = ((season.getTotalPrizePool() * 1000000) / 2) / season.getRaceCount() / 2;
-                cashReward = raceRewardTotal / season.teamCount;
-                break;
-            // Race Rewards only
-            case 1:
-                // Convert season rewards to millions
-                raceRewardTotal = ((season.getTotalPrizePool() * 1000000)) / season.getRaceCount() / 2;
-                cashReward = raceRewardTotal / season.teamCount;
-                break;
-        
-            default:
-                break;
-        }
+        int participationPrizeMoney = returnRaceRewardMoney(-1, season.getRaceCount(), season.getTeamCount(), true);
         // Load a list of the same size as the loaded team list. This list is used to add and save to each team when the save button is clicked.
         for (int i = 0; i < loadedTeams.size(); i++) {
             pointListToAdd.add(i, 0);
-            moneyListToAdd.add(i, cashReward);
+            // Add participationPrizeMoney for each team 
+            moneyListToAdd.add(i, participationPrizeMoney);
         }
     }
 

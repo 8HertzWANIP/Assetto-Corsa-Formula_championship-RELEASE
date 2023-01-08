@@ -11,7 +11,7 @@ import javax.swing.JFileChooser;
  
 public class jsonWriter extends App
 {
-    public void saveSeasonSettings(seasonSettings season) {
+    public static void saveSeasonSettings(seasonSettings season) {
          
         String path = new JFileChooser().getFileSystemView().getDefaultDirectory().toString() + "\\Ac Cardev save data\\" + season.profileName + "\\season_settings.json";
         // System.out.println(path);

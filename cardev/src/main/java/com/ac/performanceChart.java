@@ -52,11 +52,14 @@ public class performanceChart extends App implements Initializable{
         0,
         0,
         0,
+        0,
         false,
         false,
         false,
-        false
-    );
+        false,
+        null,
+        null
+        );
 
     @FXML
     private Button btnMoney;
@@ -114,7 +117,7 @@ public class performanceChart extends App implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        season = jReader.parseSeasonSettings();
+        season = jsonReader.parseSeasonSettings();
 
 
         loadTeamlist();

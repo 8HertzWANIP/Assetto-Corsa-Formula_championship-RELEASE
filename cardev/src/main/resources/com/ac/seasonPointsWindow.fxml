@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.seasonPointsWindow">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="btnContinue" layoutX="831.0" layoutY="681.0" mnemonicParsing="false" onAction="#btnContinueClick" text="Continue" />
+            <Button fx:id="btnReturn" layoutX="380.0" layoutY="682.0" mnemonicParsing="false" onAction="#btnReturnToMainMenu" text="Return to main menu" />
+            <Separator layoutX="454.0" layoutY="15.0" prefHeight="1.0" prefWidth="394.0" />
+            <Label layoutX="615.0" layoutY="17.0" text="Season Setup" />
+            <ListView fx:id="lstNewPointsView" layoutX="950.0" layoutY="179.0" prefHeight="363.0" prefWidth="200.0" />
+            <ListView fx:id="lstNewRewardsView" layoutX="700.0" layoutY="179.0" prefHeight="363.0" prefWidth="200.0" />
+            <ListView fx:id="lstOldPointsView" layoutX="400.0" layoutY="179.0" prefHeight="363.0" prefWidth="200.0" />
+            <ListView fx:id="lstOldRewardsView" layoutX="150.0" layoutY="179.0" prefHeight="363.0" prefWidth="200.0" />
+            <RadioButton fx:id="radOld" layoutX="368.0" layoutY="150.0" mnemonicParsing="false" onAction="#radOldAction">
+               <toggleGroup>
+                  <ToggleGroup fx:id="test" />
+               </toggleGroup>
+            </RadioButton>
+            <Label layoutX="328.0" layoutY="119.0" text="Old points system" />
+            <RadioButton fx:id="radNew" layoutX="918.0" layoutY="150.0" mnemonicParsing="false" onAction="#radNewAction" selected="true" toggleGroup="$test" />
+            <Label layoutX="875.0" layoutY="119.0" text="New points system" />
+            <Rectangle fx:id="recOldSelectionBox" arcHeight="5.0" arcWidth="5.0" fill="#00000018" height="363.0" layoutX="150.0" layoutY="179.0" stroke="TRANSPARENT" strokeType="INSIDE" width="450.0" />
+            <Rectangle fx:id="recNewSelectionBox" arcHeight="5.0" arcWidth="5.0" fill="#00000018" height="363.0" layoutX="700.0" layoutY="179.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="450.0" />
+            <Label layoutX="203.0" layoutY="159.0" text="Race Prize Money" />
+            <Label layoutX="753.0" layoutY="159.0" text="Race Prize Money" />
+            <Label layoutX="1034.0" layoutY="159.0" text="Points" />
+            <Label layoutX="484.0" layoutY="159.0" text="Points" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

@@ -20,7 +20,7 @@ public class ai_drag extends aiController {
     jsonWriter jWriter = new jsonWriter();
     fileReader fReader = new fileReader();
     teamSetup targetTeam = new teamSetup(null, null, null, null, null, 0, 0, 0, 0);
-    seasonSettings season = new seasonSettings(null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, false, false);
+    seasonSettings season = new seasonSettings(null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, false, false, null, null);
 
     ArrayList<aeroPart> aeroParts = new ArrayList<aeroPart>();
     
@@ -48,7 +48,7 @@ public class ai_drag extends aiController {
     // AI will cycle through these values while upgrading over the season.
     int[] aiFocusRate = {50, 40, 35, 25};
 
-    int aiSpendLimit = 250000;
+    int aiMinimumBudget = season.getTotalPrizePool() * 360;
     float aeroIncreaseRate = 1.0f;
     float dragIncreaseRate = 1.0f;
     
@@ -99,7 +99,7 @@ public class ai_drag extends aiController {
         System.out.println("Amount to upgrade: [" + amountToUpgrade + "]");
         // Upgrade picked parts to upgrade.
         // the teamAvailableFunds value is a value which gets decreased towards 0 with every upgrade untill there isn't enough funds left.
-        if (amountToUpgrade > aeroParts.size() && teamAvailableFunds > aiSpendLimit) {
+        if (amountToUpgrade > aeroParts.size() && teamAvailableFunds > aiMinimumBudget) {
             // Spread funds per part evenly across all parts
             int fundsPerPart = Math.round(teamAvailableFunds / amountToUpgrade) * Math.round(amountToUpgrade / aeroParts.size());
             for (int j = 0; j < partsToUpgrade.size(); j++) {

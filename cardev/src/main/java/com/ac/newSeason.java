@@ -27,9 +27,11 @@ import com.ac.backend.seasonSettings;
 public class newSeason extends App implements Initializable{
     jsonWriter writer = new jsonWriter();
     jsonReader reader = new jsonReader();
+    public seasonSettings season = new seasonSettings("", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, false, false, null, null);
+
     String prizeAllocation;
     int difficulty = 0;
-    int raceRewards = 0;
+    public int raceRewards = 0;
     int setNumbersOnlyIndex;
     ToggleGroup raceTg = new ToggleGroup();
 
@@ -107,13 +109,17 @@ public class newSeason extends App implements Initializable{
     private TextField txtProfileName;
 
     @FXML
-    private TextField txtRaceCount;
+    protected TextField txtRaceCount;
 
     @FXML
     private TextField txtRaceLength;
 
     @FXML
-    private TextField txtTeamCount;
+    protected TextField txtTeamCount;
+
+    public seasonSettings getSeason() {
+        return season;
+    }
 
     private void setPrizeMoney(String radioButtonResult) {
         switch (radioButtonResult) {
@@ -229,30 +235,36 @@ public class newSeason extends App implements Initializable{
             float minDrag = Math.round((Float.parseFloat((txtMinDragValue.getText())) / 100) * 1000);
             float maxDrag = Math.round((Float.parseFloat((txtMaxDragValue.getText())) / 100) * 1000);
             
-            seasonSettings season = new seasonSettings(
-            txtProfileName.getText(), 
-            Integer.parseInt(txtTeamCount.getText()), 
-            Integer.parseInt(txtRaceCount.getText()),
-            Integer.parseInt(txtRaceLength.getText()),
-            Integer.parseInt(txtFuelSize.getText()),
-            Integer.parseInt(txtPrizePool.getText()),
-            maxDownforce,
-            minDownforce,
-            minDrag,
-            maxDrag,
-            1000,
-            difficulty,
-            raceRewards,
-            0,
-            chkEqualDev.isSelected(),
-            chkEqualFunds.isSelected(),
-            false,
-            false
+            int[] seasonPointAwards = {0};
+            float[] seasonPrizeAwards = {0f};
+            season = new seasonSettings(
+                txtProfileName.getText(), 
+                Integer.parseInt(txtTeamCount.getText()), 
+                Integer.parseInt(txtRaceCount.getText()),
+                Integer.parseInt(txtRaceLength.getText()),
+                Integer.parseInt(txtFuelSize.getText()),
+                Integer.parseInt(txtPrizePool.getText()),
+                maxDownforce,
+                minDownforce,
+                minDrag,
+                maxDrag,
+                1000,
+                0,
+                difficulty,
+                raceRewards,
+                0,
+                chkEqualDev.isSelected(),
+                chkEqualFunds.isSelected(),
+                false,
+                false,
+                seasonPointAwards,
+                seasonPrizeAwards
             );
-            loadedProfile = txtProfileName.getText();
+            
+            jsonWriter.saveSeasonSettings(season);
+            App.loadedProfile = txtProfileName.getText();
             App.printLoadedProfile();
-            writer.saveSeasonSettings(season);
-            App.setRoot("newTeam");
+            App.setRoot("seasonPointsWindow");
         
         // no profile namme set
         } 

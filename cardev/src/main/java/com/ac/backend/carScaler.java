@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import com.ac.App;
 
 public class carScaler {
-    seasonSettings season = new seasonSettings(null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, false, false);
+    seasonSettings season = new seasonSettings(null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, false, false, null, null);
     jsonReader jReader = new jsonReader();
     fileWriter fWriter = new fileWriter();
     fileReader fReader = new fileReader();

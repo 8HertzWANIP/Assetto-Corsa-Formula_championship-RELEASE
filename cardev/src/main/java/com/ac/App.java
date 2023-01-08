@@ -27,7 +27,7 @@ import com.ac.backend.fileReader;
  * JavaFX App
  */
 public class App extends Application {
-    protected static String currentVersion = "ALPHA-v0.1.1";
+    protected static String currentVersion = "ALPHA-v0.1.2";
 
     fileReader fParser = new fileReader();
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();

@@ -129,7 +129,7 @@ public class aeroImprove extends App implements Initializable{
     fileWriter fWriter = new fileWriter();
     jsonReader jsonReader = new jsonReader();
     jsonWriter jsonWriter = new jsonWriter();
-    seasonSettings season = new seasonSettings("", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, false, false);
+    seasonSettings season = new seasonSettings("", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, false, false, null, null);
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();
     ArrayList<teamSetup> loadedTeams = new ArrayList<teamSetup>();
     teamSetup playerTeam;
@@ -374,6 +374,7 @@ public class aeroImprove extends App implements Initializable{
                 playerFound = true;
                 playerTeam = loadedTeams.get(i);
                 loadTeam(playerTeam.getTeamName());
+                break;
             }
         }
         if (!playerFound) {

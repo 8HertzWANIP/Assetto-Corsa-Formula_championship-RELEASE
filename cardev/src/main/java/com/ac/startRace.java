@@ -57,11 +57,14 @@ public class startRace extends App implements Initializable {
         0,
         0,
         0,
+        0,
         false,
         false,
         false,
-        false
-    );
+        false,
+        null,
+        null
+        );
     @FXML
     private Button btnCancelRace;
 
@@ -100,16 +103,13 @@ public class startRace extends App implements Initializable {
 
     @FXML
     void btnFinishRaceClick(ActionEvent event) throws IOException {
-        season.setRaceCanceled(false);
 
         if (season.getCurrentRace() == 0 && !season.isPreseasonTestingCompleted() && chkPreSeasonTesting.isSelected()) {
             season.setPreseasonTestingCompleted(true);
             season.setCurrentRace(season.getCurrentRace() + 1);
-            jWriter.saveSeasonSettings(season);
+            jsonWriter.saveSeasonSettings(season);
             App.setRoot("carPerformanceChart");
         } else {
-            season.setCurrentRace(season.getCurrentRace() + 1);
-            jWriter.saveSeasonSettings(season);
             App.setRoot("champPoints");
         }
     }
@@ -150,7 +150,7 @@ public class startRace extends App implements Initializable {
             btnStartRace.setDisable(true);
             btnReturn.setDisable(true);
         }
-        jWriter.saveSeasonSettings(season);
+        jsonWriter.saveSeasonSettings(season);
     }
 
     private void loadTeamlist() {
@@ -244,7 +244,7 @@ public class startRace extends App implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        season = jReader.parseSeasonSettings();
+        season = jsonReader.parseSeasonSettings();
 
         lblLoadingTeam.setText("Press 'Start Session' before starting the session in Assetto Corsa");
         chkPreSeasonTesting.setSelected(false);
