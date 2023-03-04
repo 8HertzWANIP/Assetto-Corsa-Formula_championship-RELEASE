@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.menus.facilities.privTesting">
+  <children>
+      <AnchorPane prefHeight="330.0" prefWidth="1280.0">
+         <children>
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="720.0" prefWidth="1280.0">
+              <items>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="1278.0">
+                     <children>
+                        <Rectangle fx:id="recTeamColor" arcHeight="5.0" arcWidth="5.0" fill="#a4a4a4" height="157.0" layoutX="-8.0" layoutY="-15.0" stroke="BLACK" strokeType="INSIDE" width="1286.0" />
+                        <Label layoutX="598.0" layoutY="14.0" text="----- TEAM -----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtTeamName" alignment="CENTER" editable="false" layoutX="556.0" layoutY="39.0" prefHeight="29.0" prefWidth="203.0" promptText="teamName">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="cmbSelectedTeam" layoutX="582.0" layoutY="41.0" onAction="#cmbSelectTeam" prefWidth="150.0" />
+                        <TextField fx:id="txtMoney" editable="false" layoutX="624.0" layoutY="72.0" prefHeight="29.0" prefWidth="135.0" promptText="Funds" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="72.0" text="€">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtResearch" alignment="CENTER" editable="false" layoutX="675.0" layoutY="106.0" onKeyTyped="#txtResearchChanged" prefHeight="29.0" prefWidth="84.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="108.0" text="Research Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="68.0" layoutY="14.0" text="----- CHAMPIONSHIP-----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChhampPoints" alignment="CENTER" editable="false" layoutX="231.0" layoutY="105.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="107.0" text="Championship Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChampPos" alignment="CENTER" editable="false" layoutX="231.0" layoutY="68.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="70.0" text="Championship Position">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TitledPane alignment="CENTER" collapsible="false" layoutX="489.0" layoutY="14.0" prefHeight="296.0" prefWidth="300.0" text="Installed parts testing">
+                           <content>
+                              <ListView fx:id="lstTestingParts" prefHeight="250.0" prefWidth="300.0" />
+                           </content>
+                        </TitledPane>
+                        <Button fx:id="btnFinish" disable="true" layoutX="1115.0" layoutY="514.0" mnemonicParsing="false" onAction="#btnFinishClick" text="Finish Session">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnSetup" layoutX="1115.0" layoutY="460.0" mnemonicParsing="false" onAction="#btnSetupClick" text="Setup Session">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnReturn" layoutX="14.0" layoutY="514.0" mnemonicParsing="false" onAction="#btnReturnClick" text="Return">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="lblReward" alignment="CENTER_RIGHT" layoutX="218.0" layoutY="524.0" prefHeight="25.0" prefWidth="255.0" text="RP REWARD: 0000 - 0000" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblCost" layoutX="805.0" layoutY="524.0" prefHeight="25.0" prefWidth="203.0" text="Cost € 000000000" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <CheckBox fx:id="chkSimSession" layoutX="1135.0" layoutY="432.0" mnemonicParsing="false" onAction="#chkSimSessionToggle" text="Simulate session" />
+                        <TextArea layoutX="478.0" layoutY="324.0" prefHeight="225.0" prefWidth="322.0" text="Private testing has no in-game functionality. (yet)&#10;&#10;However you can still use private testing to test out your &#10;car's drivability and balance.&#10;&#10;The &quot;Setup session&quot; button will subtract the cost of &#10;private testing and unlock the &quot;Finish session&quot; button&#10;&#10;The &quot;Finish session&quot; button will award you with RP and&#10;test all your parts.&#10;(&quot;Simulate session&quot; will unlock the &quot;Finish session&quot; button&#10;to skip physically testing your car and get your rewards)" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

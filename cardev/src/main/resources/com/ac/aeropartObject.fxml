@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.menus.facilities.aeropartObject">
+   <children>
+      <AnchorPane fx:id="ancPartPane" onMouseClicked="#ancPartPaneClicked" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Rectangle fx:id="recRarity" arcHeight="5.0" arcWidth="5.0" height="100.0" stroke="BLACK" strokeType="INSIDE" width="200.0">
+               <fill>
+                  <LinearGradient endX="0.4928909952606635" endY="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.6000000238418579" green="0.19607843458652496" blue="0.800000011920929" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <ProgressBar fx:id="prgImprovement" layoutX="1.0" layoutY="89.0" opacity="0.8" prefHeight="10.0" prefWidth="198.0" progress="0.8" />
+            <Label fx:id="lblName" layoutX="7.0" layoutY="6.0" text="BODY">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUntestedPart" alignment="CENTER" layoutX="12.0" layoutY="37.0" text="PART NEEDS TESTING" textAlignment="CENTER" visible="false">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+               <effect>
+                  <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <AnchorPane fx:id="ancPartStats" layoutX="14.0" layoutY="-1.0" visible="false">
+               <children>
+                  <Label layoutY="43.0" text="Downforce" />
+                  <Label layoutX="98.0" layoutY="43.0" text="Drag" />
+                  <Label fx:id="lblDownforce" layoutY="62.0" text="1100">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblDrag" layoutX="97.0" layoutY="62.0" text="900">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAverage" layoutX="103.0" layoutY="2.0" text="1000" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="lblLevel" layoutX="25.0" layoutY="21.0" text="Level: ">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

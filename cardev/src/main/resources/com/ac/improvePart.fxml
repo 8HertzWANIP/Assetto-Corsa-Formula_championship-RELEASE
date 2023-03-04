@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.aeroImprove">
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.menus.aeroImprove">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -122,7 +122,7 @@
                            </effect>
                         </Label>
                         <Button fx:id="btnPerformanceChart" layoutX="69.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnPerformanceChartClick" text="Performance Index" />
-                        <Button fx:id="btnResetCars" layoutX="92.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnResetCars" text="Reset Cars" visible="false" />
+                        <Button fx:id="btnResetCars" layoutX="92.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnResetCars" text="Reset Cars" />
                         <Button fx:id="btnChampStandings" layoutX="54.0" layoutY="497.0" mnemonicParsing="false" onAction="#btnChampStandingsClick" text="Championship Standings" />
                         <Button fx:id="btnRunAI" layoutX="52.0" layoutY="637.0" mnemonicParsing="false" onAction="#btnRunAiClick" text="Start next race">
                            <font>

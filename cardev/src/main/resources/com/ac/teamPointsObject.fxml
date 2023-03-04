@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="VBox" prefHeight="50.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.backend.teamPointsObject">
+<VBox fx:id="VBox" prefHeight="50.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.menus.uiObjects.teamPointsObject">
   <children>
       <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0">
          <children>

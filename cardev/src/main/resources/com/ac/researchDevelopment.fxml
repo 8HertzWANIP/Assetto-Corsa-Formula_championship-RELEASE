@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.menus.facilities.researchDevelopment">
+  <children>
+      <AnchorPane prefHeight="330.0" prefWidth="1280.0">
+         <children>
+            <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="720.0" prefWidth="1280.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Rectangle fx:id="recTeamColor" arcHeight="5.0" arcWidth="5.0" fill="#a4a4a4" height="157.0" layoutX="-8.0" layoutY="-15.0" stroke="BLACK" strokeType="INSIDE" width="1286.0" />
+                        <Label layoutX="598.0" layoutY="14.0" text="----- TEAM -----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtTeamName" alignment="CENTER" editable="false" layoutX="556.0" layoutY="39.0" prefHeight="29.0" prefWidth="203.0" promptText="teamName">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="cmbSelectedTeam" layoutX="582.0" layoutY="41.0" onAction="#cmbSelectTeam" prefWidth="150.0" />
+                        <TextField fx:id="txtMoney" editable="false" layoutX="624.0" layoutY="72.0" prefHeight="29.0" prefWidth="135.0" promptText="Funds" text="1450000">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="72.0" text="€">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtResearch" alignment="CENTER" editable="false" layoutX="675.0" layoutY="106.0" onKeyTyped="#txtResearchChanged" prefHeight="29.0" prefWidth="84.0" text="1066">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="108.0" text="Research Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="68.0" layoutY="14.0" text="----- CHAMPIONSHIP-----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChhampPoints" alignment="CENTER" editable="false" layoutX="231.0" layoutY="105.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="107.0" text="Championship Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChampPos" alignment="CENTER" editable="false" layoutX="231.0" layoutY="68.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="70.0" text="Championship Position">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblAverage21211" layoutX="822.0" layoutY="19.0" text="RESEARCH &amp; DEVELOPMENT" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <ProgressBar fx:id="prgRdExp" layoutX="877.0" layoutY="98.0" opacity="0.8" prefHeight="20.0" prefWidth="300.0" progress="0.13">
+                           <effect>
+                              <ColorAdjust hue="-0.33" />
+                           </effect>
+                        </ProgressBar>
+                        <Label fx:id="lblRdLevel" layoutX="1140.0" layoutY="79.0" text="Level 0">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblRdExpNmbr" layoutX="878.0" layoutY="79.0" text="52454 / 400000 EXP">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane fx:id="ancInventoryPane" minHeight="0.0" minWidth="0.0" onMouseClicked="#ancInventoryPaneClick" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <Button fx:id="btnLoadAeroParts" layoutX="16.0" layoutY="412.0" mnemonicParsing="false" onAction="#btnLoadAeroPartsClick" text="load aeroparts" />
+                        <Button fx:id="btnSaveToFile" layoutX="16.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnSaveToFileClick" text="save aeroparts to file" />
+                        <Rectangle fx:id="recSelectedPartRarity" arcHeight="5.0" arcWidth="5.0" height="216.0" layoutX="-2.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="1280.0">
+                           <fill>
+                              <LinearGradient endX="0.44549763033175355" endY="1.0" startX="1.0" startY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Button fx:id="btnNextPage" layoutX="981.0" layoutY="319.0" mnemonicParsing="false" onAction="#btnNextPageClick" text="&gt;">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnPrevPage" layoutX="981.0" layoutY="411.0" mnemonicParsing="false" onAction="#btnPrevPageClick" text="&lt;">
+                           <font>
+                              <Font name="System Bold" size="40.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="lblSelectedPartPage" layoutX="1109.0" layoutY="385.0" text="PAGE 1 / 1" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <ProgressBar fx:id="prgPotential" layoutX="714.0" layoutY="165.0" opacity="0.8" prefHeight="20.0" prefWidth="300.0" progress="0.8" />
+                        <ProgressBar fx:id="prgPotentialProjected" layoutX="714.0" layoutY="165.0" opacity="0.5" prefHeight="20.0" prefWidth="300.0" progress="0.5" visible="false">
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </ProgressBar>
+                        <Label layoutX="1060.0" layoutY="131.0" text="Downforce">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="1175.0" layoutY="131.0" text="Drag-reduction">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblSelectedPartDf" alignment="CENTER" contentDisplay="CENTER" layoutX="1034.0" layoutY="163.0" prefWidth="110.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblSelectedPartDr" alignment="CENTER" contentDisplay="CENTER" layoutX="1161.0" layoutY="163.0" prefWidth="110.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblSelectedPartAverageScore" alignment="CENTER" contentDisplay="CENTER" layoutX="1061.0" layoutY="34.0" prefWidth="200.0" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="714.0" layoutY="140.0" text="Improvement potential">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblSelectedPartName" layoutX="738.0" layoutY="34.0" text="---" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblSelectedPartImprovement" layoutX="915.0" layoutY="135.0" text="??? / ???" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblSelectedPartTestTip" layoutX="714.0" layoutY="186.0" text="*Test in wind-tunnel or track to reveal stats">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="1123.0" layoutY="14.0" text="Average score">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Button fx:id="btnNewPartsInventory" layoutX="705.0" layoutY="212.0" mnemonicParsing="false" onAction="#btnNewPartsInventoryClick" text="New parts">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnInstalledParts" layoutX="431.0" layoutY="212.0" mnemonicParsing="false" onAction="#btnInstalledPartsClick" text="Installed parts">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane fx:id="ancPartSlider" layoutX="54.0" layoutY="144.0" visible="false">
+                           <children>
+                              <Slider fx:id="slrDragDownforce" blockIncrement="5.0" layoutX="18.0" layoutY="31.0" minorTickCount="5" onMouseClicked="#slrDragDownforceChanged" prefWidth="300.0" showTickMarks="true" snapToTicks="true" value="50.0" />
+                              <Label layoutX="282.0" layoutY="2.0" text="Downforce">
+                                 <effect>
+                                    <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="2.0" layoutY="2.0" text="Drag">
+                                 <effect>
+                                    <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="lblImproveCreatePart" layoutX="127.0" layoutY="16.0">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Pane fx:id="panNewPartPabe" layoutX="35.0" layoutY="56.0" prefHeight="141.0" prefWidth="558.0" visible="false">
+                           <children>
+                              <Label fx:id="lblCostStatic" layoutX="102.0" text="Cost">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </Label>
+                              <Label fx:id="lblCostNew" layoutX="254.0" prefHeight="30.0" text="€ ">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </Label>
+                              <Button fx:id="btnSaveParts" layoutX="344.0" layoutY="71.0" mnemonicParsing="false" onAction="#btnSavePartsClick" text="Create part">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnCancelCreate" layoutX="30.0" layoutY="91.0" mnemonicParsing="false" onAction="#btnCancelCreateClick" text="Cancel">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="panUpgradePartPane" layoutX="129.0" layoutY="15.0" prefHeight="141.0" prefWidth="441.0" visible="false">
+                           <children>
+                              <TextField fx:id="txtRP" alignment="CENTER" layoutX="119.0" layoutY="71.0" onAction="#txtRPAction" onKeyTyped="#txtRPChanged" prefHeight="29.0" prefWidth="84.0" text="0">
+                                 <font>
+                                    <Font name="Verdana" size="15.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutY="73.0" text="Research Points">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </Label>
+                              <Label layoutX="1.0" layoutY="105.0" text="Cost">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </Label>
+                              <Label fx:id="lblCost" layoutX="112.0" layoutY="103.0" prefHeight="30.0" text="€ ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </Label>
+                              <Button fx:id="btnInstallParts" layoutX="241.0" mnemonicParsing="false" onAction="#btnInstallPartsClick" prefHeight="58.0" prefWidth="200.0" text="Install Part">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnCancelInstall" layoutX="305.0" layoutY="79.0" mnemonicParsing="false" onAction="#btnCancelInstallClick" text="Cancel">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Button fx:id="btnReturn" layoutX="16.0" layoutY="519.0" mnemonicParsing="false" onAction="#btnReturnClick" text="Return to facilities" />
+                        <Button fx:id="btnCreateNewPart" layoutX="16.0" layoutY="269.0" mnemonicParsing="false" onAction="#btnCreateNewPartClick" text="Create new part">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="cmbSelectedPart" layoutX="15.0" layoutY="310.0" onAction="#cmbSelectPart" prefWidth="170.0" promptText="cmbSelectedPart" visible="false" />
+                        <Label layoutX="714.0" layoutY="16.0" text="Part:">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Button fx:id="btnCreateCar" layoutX="21.0" layoutY="222.0" mnemonicParsing="false" onAction="#btnCreateCarClick" text="Create new car" visible="false">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

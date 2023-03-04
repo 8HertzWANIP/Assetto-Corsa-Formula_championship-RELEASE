@@ -2,11 +2,12 @@ package com.ac;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -18,8 +19,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.ac.backend.aeroPart;
-import com.ac.backend.fileReader;
+import com.ac.fileparsing.fileReader;
+import com.ac.lib.aeroPart;
 
 
 
@@ -27,19 +28,22 @@ import com.ac.backend.fileReader;
  * JavaFX App
  */
 public class App extends Application {
-    protected static String currentVersion = "ALPHA-v0.1.2";
+    protected static String currentVersion = "ALPHA-v0.2 DEV";
 
     fileReader fParser = new fileReader();
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();
     public static Scene scene;
     public static Stage loadedStage;
     public static String loadedProfile = "";
+    public static String defaultWindow = "landingPage";
+    private final String environment = "DEV";
 
 
     @Override
     public void start(Stage stage) throws IOException {
         String url = "https://api.github.com/repos/8HertzWANIP/Assetto-Corsa-Formula_championship-RELEASE/releases/latest";
-        Boolean appUpToDate = true;
+        Boolean appUpToDate = null;
+
         // Call github API to get release version of public repo
     	try {
             HttpResponse response;
@@ -67,10 +71,12 @@ public class App extends Application {
             e.printStackTrace();
         }
         // Check for new version on gitHub.
-        if (!appUpToDate) {
-            scene = new Scene(loadFXML("newVersionWindow"), 640, 250);
+        if (!appUpToDate && !environment.equals("DEV") && !environment.equals("EA")) {
+            URL urlLand = new File("cardev/src/main/resources/com/ac/newVersionWindow.fxml").toURI().toURL();
+            scene = new Scene(FXMLLoader.load(urlLand), 640, 250);
         } else {
-            scene = new Scene(loadFXML("landingPage"), 1280, 720);
+            URL urlLand = new File("cardev/src/main/resources/com/ac/" + defaultWindow + ".fxml").toURI().toURL();
+            scene = new Scene(FXMLLoader.load(urlLand), 1280, 720);
         }
         loadedStage = stage;
         loadedStage.setScene(scene);
@@ -79,13 +85,9 @@ public class App extends Application {
         loadedStage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    protected static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+    public static void setRoot(String fxml) throws IOException {
+        URL url = new File("cardev/src/main/resources/com/ac/" + fxml + ".fxml").toURI().toURL();
+        scene.setRoot(FXMLLoader.load(url));
     }
 
     public static void printLoadedProfile() {

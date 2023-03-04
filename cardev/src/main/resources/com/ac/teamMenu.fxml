@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.menus.teamMenu">
+  <children>
+      <AnchorPane prefHeight="330.0" prefWidth="1280.0">
+         <children>
+            <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="720.0" prefWidth="1280.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Rectangle fx:id="recTeamColor" arcHeight="5.0" arcWidth="5.0" fill="#a4a4a4" height="731.0" layoutX="-8.0" layoutY="-15.0" stroke="BLACK" strokeType="INSIDE" width="1286.0" />
+                        <Label layoutX="598.0" layoutY="14.0" text="----- TEAM -----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtTeamName" alignment="CENTER" editable="false" layoutX="556.0" layoutY="39.0" prefHeight="29.0" prefWidth="203.0" promptText="teamName">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="cmbSelectedTeam" layoutX="582.0" layoutY="41.0" onAction="#cmbSelectTeam" prefWidth="150.0" />
+                        <TextField fx:id="txtMoney" editable="false" layoutX="624.0" layoutY="72.0" prefHeight="29.0" prefWidth="135.0" promptText="Funds" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="72.0" text="€">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtResearch" alignment="CENTER" editable="false" layoutX="675.0" layoutY="106.0" onKeyTyped="#txtResearchChanged" prefHeight="29.0" prefWidth="84.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="108.0" text="Research Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="68.0" layoutY="14.0" text="----- CHAMPIONSHIP-----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChhampPoints" alignment="CENTER" editable="false" layoutX="231.0" layoutY="105.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="107.0" text="Championship Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChampPos" alignment="CENTER" editable="false" layoutX="231.0" layoutY="68.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="70.0" text="Championship Position">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="993.0" layoutY="14.0" text="----- FACILITIES-----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="971.0" layoutY="71.0" text="Windtunnel">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="971.0" layoutY="108.0" text="Research and Development">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <SplitPane dividerPositions="0.17711598746081506" layoutX="-2.0" layoutY="-3.0" prefHeight="731.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnPerformanceChart" layoutX="54.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnPerformanceChartClick" text="Performance Index" />
+                                    <Button fx:id="btnChampStandings" layoutX="38.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnChampStandingsClick" text="Championship Standings" />
+                                    <Button fx:id="btnResetCars" layoutX="77.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnResetCars" text="Reset Cars" />
+                                    <Button fx:id="btnMainMenu" layoutX="47.0" layoutY="530.0" mnemonicParsing="false" onAction="#btnMainMenuClick" text="Return to main menu" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <SplitPane fx:id="mainOptionsWindow" dividerPositions="0.5" prefHeight="729.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane maxWidth="518.0" minHeight="0.0" minWidth="0.0" prefHeight="567.0" prefWidth="518.0" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <Button fx:id="btnStartRace" layoutX="181.0" layoutY="193.0" mnemonicParsing="false" onAction="#btnStartRaceClick" onMouseEntered="#btnStartRaceHover" onMouseExited="#btnStartRaceExit" prefHeight="569.0" prefWidth="520.0" text="btnStartRace" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <effect>
+                                                      <ImageInput>
+                                                         <source>
+                                                            <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/indexgrey(e).png" />
+                                                         </source>
+                                                      </ImageInput>
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane maxWidth="521.0" minHeight="0.0" minWidth="0.0" prefHeight="567.0" prefWidth="521.0" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <Button fx:id="btnfacilities" layoutY="-1.0" mnemonicParsing="false" onAction="#btnfacilitiesClick" onMouseEntered="#btnfacilitiesHover" onMouseExited="#btnfacilitiesExit" prefHeight="569.0" prefWidth="520.0" text="Button">
+                                                   <effect>
+                                                      <ImageInput>
+                                                         <source>
+                                                            <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/campusgrey(e).png" />
+                                                         </source>
+                                                      </ImageInput>
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

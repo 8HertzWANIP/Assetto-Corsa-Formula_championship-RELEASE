@@ -10,69 +10,71 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.newSeason">
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.seasons.newSeason.newSeason">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <TextField fx:id="txtProfileName" alignment="CENTER" layoutX="474.0" layoutY="46.0" prefHeight="25.0" prefWidth="322.0" promptText="Profile Name" />
-            <TextField fx:id="txtTeamCount" alignment="CENTER" layoutX="488.0" layoutY="125.0" prefHeight="25.0" prefWidth="29.0" text="2" />
-            <TextField fx:id="txtRaceCount" alignment="CENTER" layoutX="488.0" layoutY="159.0" prefHeight="25.0" prefWidth="29.0" text="1" />
-            <TextField fx:id="txtRaceLength" alignment="CENTER" layoutX="488.0" layoutY="192.0" prefHeight="25.0" prefWidth="45.0" text="150" />
-            <TextField fx:id="txtFuelSize" alignment="CENTER" layoutX="699.0" layoutY="124.0" prefHeight="25.0" prefWidth="29.0" text="50" />
-            <Slider fx:id="sldDifficulty" layoutX="614.0" layoutY="168.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" onMouseReleased="#sldDifficultyChange" prefHeight="33.0" prefWidth="113.0" showTickMarks="true" snapToTicks="true" />
+            <TextField fx:id="txtTeamCount" alignment="CENTER" layoutX="518.0" layoutY="126.0" prefHeight="25.0" prefWidth="29.0" text="2" />
+            <TextField fx:id="txtRaceCount" alignment="CENTER" layoutX="518.0" layoutY="160.0" prefHeight="25.0" prefWidth="29.0" text="1" />
+            <TextField fx:id="txtRaceLength" alignment="CENTER" layoutX="518.0" layoutY="193.0" prefHeight="25.0" prefWidth="45.0" text="150" />
+            <TextField fx:id="txtFuelSize" alignment="CENTER" layoutX="729.0" layoutY="125.0" prefHeight="25.0" prefWidth="29.0" text="50" />
+            <Slider fx:id="sldDifficulty" layoutX="644.0" layoutY="169.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" onMouseReleased="#sldDifficultyChange" prefHeight="33.0" prefWidth="113.0" showTickMarks="true" snapToTicks="true" />
             <CheckBox fx:id="chkEqualDev" layoutX="792.0" layoutY="128.0" mnemonicParsing="false" onKeyReleased="#chkEqualDevToggle" text="Equal car development" />
             <CheckBox fx:id="chkEqualFunds" layoutX="794.0" layoutY="185.0" mnemonicParsing="false" onKeyReleased="#chkEqualFundsToggle" text="Equal starting funds" />
-            <TextField fx:id="txtPrizePool" alignment="CENTER" disable="true" layoutX="604.0" layoutY="275.0" prefHeight="25.0" prefWidth="45.0" text="700" />
-            <RadioButton fx:id="radMoneyAllocBoth" layoutX="603.0" layoutY="308.0" mnemonicParsing="false" text="Per race + Final Championship standing rewards" />
-            <RadioButton fx:id="radMoneyAllocRace" layoutX="603.0" layoutY="338.0" mnemonicParsing="false" text="Per race rewards only" />
-            <RadioButton fx:id="radMoneyAllocSeason" disable="true" layoutX="603.0" layoutY="367.0" mnemonicParsing="false" text="Final Championship standing rewards only" />
-            <Slider fx:id="sldMaxDf" layoutX="554.0" layoutY="464.0" max="150.0" min="100.0" minorTickCount="5" onMouseReleased="#sldMaxDfDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="120.0" />
-            <TextField fx:id="txtMaxDfValue" alignment="CENTER" editable="false" layoutX="758.0" layoutY="462.0" prefHeight="25.0" prefWidth="45.0" text="120" />
-            <Slider fx:id="sldMaxDrag" layoutX="554.0" layoutY="506.0" max="150.0" min="100.0" minorTickCount="5" onMouseReleased="#sldMaxDragDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="120.0" />
-            <TextField fx:id="txtMaxDragValue" alignment="CENTER" editable="false" layoutX="758.0" layoutY="504.0" prefHeight="25.0" prefWidth="45.0" text="120" />
-            <Slider fx:id="sldMinDf" layoutX="553.0" layoutY="543.0" min="50.0" minorTickCount="5" onMouseReleased="#sldMinDfDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="80.0" />
-            <TextField fx:id="txtMinDfValue" alignment="CENTER" editable="false" layoutX="757.0" layoutY="541.0" prefHeight="25.0" prefWidth="45.0" text="80" />
-            <Slider fx:id="sldMinDrag" layoutX="553.0" layoutY="585.0" min="50.0" minorTickCount="5" onMouseReleased="#sldMinDragDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="80.0" />
-            <TextField fx:id="txtMinDragValue" alignment="CENTER" editable="false" layoutX="757.0" layoutY="583.0" prefHeight="25.0" prefWidth="45.0" text="80" />
+            <Slider fx:id="sldRdRng" blockIncrement="1.0" layoutX="518.0" layoutY="251.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
+            <TextField fx:id="txtPrizePool" alignment="CENTER" disable="true" layoutX="620.0" layoutY="328.0" prefHeight="25.0" prefWidth="45.0" text="700" />
+            <RadioButton fx:id="radMoneyAllocBoth" layoutX="619.0" layoutY="361.0" mnemonicParsing="false" selected="true" text="Per race + Final Championship standing rewards" />
+            <RadioButton fx:id="radMoneyAllocRace" layoutX="619.0" layoutY="391.0" mnemonicParsing="false" text="Per race rewards only" />
+            <RadioButton fx:id="radMoneyAllocSeason" disable="true" layoutX="619.0" layoutY="420.0" mnemonicParsing="false" text="Final Championship standing rewards only" />
+            <Slider fx:id="sldMaxDf" layoutX="570.0" layoutY="517.0" max="150.0" min="100.0" minorTickCount="5" onMouseReleased="#sldMaxDfDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="120.0" />
+            <TextField fx:id="txtMaxDfValue" alignment="CENTER" editable="false" layoutX="774.0" layoutY="515.0" prefHeight="25.0" prefWidth="45.0" text="120" />
+            <Slider fx:id="sldMaxDrag" layoutX="570.0" layoutY="559.0" max="150.0" min="100.0" minorTickCount="5" onMouseReleased="#sldMaxDragDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="120.0" />
+            <TextField fx:id="txtMaxDragValue" alignment="CENTER" editable="false" layoutX="774.0" layoutY="557.0" prefHeight="25.0" prefWidth="45.0" text="120" />
+            <Slider fx:id="sldMinDf" layoutX="569.0" layoutY="596.0" min="50.0" minorTickCount="5" onMouseReleased="#sldMinDfDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="80.0" />
+            <TextField fx:id="txtMinDfValue" alignment="CENTER" editable="false" layoutX="773.0" layoutY="594.0" prefHeight="25.0" prefWidth="45.0" text="80" />
+            <Slider fx:id="sldMinDrag" layoutX="569.0" layoutY="638.0" min="50.0" minorTickCount="5" onMouseReleased="#sldMinDragDone" prefHeight="33.0" prefWidth="160.0" showTickLabels="true" snapToTicks="true" value="80.0" />
+            <TextField fx:id="txtMinDragValue" alignment="CENTER" editable="false" layoutX="773.0" layoutY="636.0" prefHeight="25.0" prefWidth="45.0" text="80" />
             <Button fx:id="btnContinue" layoutX="831.0" layoutY="681.0" mnemonicParsing="false" onAction="#btnContinueClick" text="Continue" />
-            <Button fx:id="btnReturn" layoutX="380.0" layoutY="682.0" mnemonicParsing="false" onAction="#btnReturnToMainMenu" text="Return to main menu" />
-            <Label fx:id="lblEasy" layoutX="607.0" layoutY="193.0" text="Easy" />
-            <Label fx:id="lblMedium" layoutX="631.0" layoutY="194.0" text="Medium" visible="false" />
-            <Label fx:id="lblHard" layoutX="674.0" layoutY="194.0" text="Hard" visible="false" />
-            <Label fx:id="lblVeryHard" layoutX="693.0" layoutY="194.0" text="Very Hard" visible="false" />
-            <Label layoutX="386.0" layoutY="128.0" text="Team Count" />
-            <Label layoutX="386.0" layoutY="162.0" text="Races in season" />
-            <Label layoutX="384.0" layoutY="277.0" text="Total prize pool" />
-            <Label layoutX="388.0" layoutY="464.0" text="Maximum downforce" />
-            <Label layoutX="388.0" layoutY="506.0" text="Maximum drag" />
-            <Separator layoutX="385.0" layoutY="428.0" prefHeight="1.0" prefWidth="500.0" />
-            <Label layoutX="384.0" layoutY="306.0" text="Prize money allocation" />
-            <Label layoutX="594.0" layoutY="431.0" text="Aerodynamics" />
-            <Separator layoutX="385.0" layoutY="241.0" prefHeight="1.0" prefWidth="500.0" />
-            <Label layoutX="574.0" layoutY="244.0" text="Prize pool and rewards" />
+            <Button fx:id="btnReturn" layoutX="380.0" layoutY="682.0" mnemonicParsing="false" onAction="#btnReturnToMainMenu" text="Return" />
+            <Label fx:id="lblEasy" layoutX="637.0" layoutY="194.0" text="Easy" />
+            <Label fx:id="lblMedium" layoutX="661.0" layoutY="195.0" text="Medium" visible="false" />
+            <Label fx:id="lblHard" layoutX="704.0" layoutY="195.0" text="Hard" visible="false" />
+            <Label fx:id="lblVeryHard" layoutX="723.0" layoutY="195.0" text="Very Hard" visible="false" />
+            <Label layoutX="416.0" layoutY="129.0" text="Team Count" />
+            <Label layoutX="400.0" layoutY="164.0" text="Races in season" />
+            <Label layoutX="400.0" layoutY="330.0" text="Total prize pool" />
+            <Label layoutX="404.0" layoutY="517.0" text="Maximum downforce" />
+            <Label layoutX="404.0" layoutY="559.0" text="Maximum drag" />
+            <Separator layoutX="401.0" layoutY="481.0" prefHeight="1.0" prefWidth="500.0" />
+            <Label layoutX="400.0" layoutY="359.0" text="Prize money allocation" />
+            <Label layoutX="610.0" layoutY="484.0" text="Aerodynamics" />
+            <Separator layoutX="401.0" layoutY="294.0" prefHeight="1.0" prefWidth="500.0" />
+            <Label layoutX="590.0" layoutY="297.0" text="Prize pool and rewards" />
             <Separator layoutX="444.0" layoutY="14.0" prefHeight="1.0" prefWidth="394.0" />
             <Label layoutX="599.0" layoutY="16.0" text="Season Setup" />
-            <Separator layoutX="385.0" layoutY="96.0" prefHeight="1.0" prefWidth="500.0" />
-            <Label layoutX="391.0" layoutY="221.0" text="* Modern F1 race weekends are around 305 km in race length" />
-            <Label layoutX="569.0" layoutY="99.0" text="Team &amp; Season Settings" />
-            <Label layoutX="387.0" layoutY="543.0" text="Starting downforce" />
-            <Label layoutX="387.0" layoutY="585.0" text="Starting drag" />
-            <Label layoutX="652.0" layoutY="279.0" text="Million" />
-            <Label layoutX="386.0" layoutY="195.0" text="Race Length" />
-            <Label layoutX="537.0" layoutY="196.0" text="Km" />
-            <Label layoutX="532.0" layoutY="624.0" text="* The default values are recommended." />
-            <Label layoutX="560.0" layoutY="128.0" text="Car fuel tank size" />
-            <Label layoutX="734.0" layoutY="128.0" text="\%" />
-            <Label layoutX="807.0" layoutY="466.0" text="\%" />
-            <Label layoutX="807.0" layoutY="508.0" text="\%" />
-            <Label layoutX="807.0" layoutY="545.0" text="\%" />
-            <Label layoutX="807.0" layoutY="587.0" text="\%" />
-            <Label layoutX="560.0" layoutY="171.0" text="Difficulty" />
+            <Separator layoutX="415.0" layoutY="97.0" prefHeight="1.0" prefWidth="500.0" />
+            <Label layoutX="421.0" layoutY="222.0" text="* Modern F1 race weekends are around 305 km in race length" />
+            <Label layoutX="599.0" layoutY="100.0" text="Team &amp; Season Settings" />
+            <Label layoutX="403.0" layoutY="596.0" text="Starting downforce" />
+            <Label layoutX="403.0" layoutY="638.0" text="Starting drag" />
+            <Label layoutX="668.0" layoutY="332.0" text="Million" />
+            <Label layoutX="416.0" layoutY="196.0" text="Race Length" />
+            <Label layoutX="567.0" layoutY="197.0" text="Km" />
+            <Label layoutX="548.0" layoutY="677.0" text="* The default values are recommended." />
+            <Label layoutX="590.0" layoutY="129.0" text="Car fuel tank size" />
+            <Label layoutX="764.0" layoutY="129.0" text="\%" />
+            <Label layoutX="823.0" layoutY="519.0" text="\%" />
+            <Label layoutX="823.0" layoutY="561.0" text="\%" />
+            <Label layoutX="823.0" layoutY="598.0" text="\%" />
+            <Label layoutX="823.0" layoutY="640.0" text="\%" />
+            <Label layoutX="590.0" layoutY="172.0" text="Difficulty" />
             <Label layoutX="796.0" layoutY="151.0" text="* Enable this to set every team's development rate equal" />
             <Label layoutX="805.0" layoutY="164.0" text="When disabled each team's development rate will scale to last season's finishing position" />
             <Label layoutX="798.0" layoutY="208.0" text="* Enable this to give each team the same amount of starting funds " />
             <Label layoutX="807.0" layoutY="221.0" text="regardless of last season's finishing position" />
             <Label fx:id="lblContinueDisabled" layoutX="803.0" layoutY="658.0" text="Profile Name is invalid." textFill="RED" visible="false" />
+            <Label layoutX="297.0" layoutY="251.0" text="Team research level randomization" />
          </children>
     </AnchorPane>
   </children>

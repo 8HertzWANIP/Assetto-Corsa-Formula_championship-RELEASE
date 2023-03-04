@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.menus.facilities.windTunnel">
+  <children>
+      <AnchorPane prefHeight="330.0" prefWidth="1280.0">
+         <children>
+            <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="720.0" prefWidth="1280.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Rectangle fx:id="recTeamColor" arcHeight="5.0" arcWidth="5.0" fill="#a4a4a4" height="157.0" layoutX="-8.0" layoutY="-15.0" stroke="BLACK" strokeType="INSIDE" width="1286.0" />
+                        <Label layoutX="598.0" layoutY="14.0" text="----- TEAM -----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtTeamName" alignment="CENTER" editable="false" layoutX="556.0" layoutY="39.0" prefHeight="29.0" prefWidth="203.0" promptText="teamName">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="cmbSelectedTeam" layoutX="582.0" layoutY="41.0" onAction="#cmbSelectTeam" prefWidth="150.0" />
+                        <TextField fx:id="txtMoney" editable="false" layoutX="624.0" layoutY="72.0" prefHeight="29.0" prefWidth="135.0" promptText="Funds" text="1450000">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="72.0" text="€">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtResearch" alignment="CENTER" editable="false" layoutX="675.0" layoutY="106.0" onKeyTyped="#txtResearchChanged" prefHeight="29.0" prefWidth="84.0" text="1066">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="556.0" layoutY="108.0" text="Research Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="68.0" layoutY="14.0" text="----- CHAMPIONSHIP-----" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChhampPoints" alignment="CENTER" editable="false" layoutX="231.0" layoutY="105.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="107.0" text="Championship Points">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TextField fx:id="txtChampPos" alignment="CENTER" editable="false" layoutX="231.0" layoutY="68.0" prefHeight="29.0" prefWidth="47.0" text="0">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="53.0" layoutY="70.0" text="Championship Position">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblFacilityName" layoutX="975.0" layoutY="19.0" text="WIND-TUNNEL" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblTunnelLevel" layoutX="1154.0" layoutY="64.0" text="Level 0">
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane fx:id="ancInventoryPane" minHeight="0.0" minWidth="0.0" onMouseClicked="#ancInventoryPaneClick" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Button fx:id="btnReturn" layoutX="36.0" layoutY="521.0" mnemonicParsing="false" onAction="#btnReturnClick" text="Return to facilities" />
+                        <Button fx:id="btnTestParts" layoutX="359.0" layoutY="362.0" mnemonicParsing="false" onAction="#btnTestPartsClick" prefHeight="25.0" prefWidth="250.0" text="Test Parts">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnResearch" layoutX="1013.0" layoutY="513.0" mnemonicParsing="false" onAction="#btnResearchClick" prefHeight="25.0" prefWidth="250.0" text="Research Car">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnUpgrade" layoutX="1013.0" layoutY="215.0" mnemonicParsing="false" onAction="#btnUpgradeClick" prefHeight="25.0" prefWidth="250.0" text="Upgrade Facility">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#80808063" height="250.0" layoutX="359.0" layoutY="112.0" stroke="TRANSPARENT" strokeType="INSIDE" width="250.0" />
+                        <Label layoutX="441.0" layoutY="119.0" text="Test parts">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="359.0" layoutY="162.0" text=" - Tests all constructed parts">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="359.0" layoutY="192.0" text=" - Tests all installed parts">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="359.0" layoutY="222.0" text=" - Testing can fail per part">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblTestCost" alignment="CENTER" layoutX="411.0" layoutY="328.0" prefHeight="25.0" prefWidth="120.0" text="Cost € ------">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#80808063" height="200.0" layoutX="1012.0" layoutY="313.0" stroke="TRANSPARENT" strokeType="INSIDE" width="250.0" />
+                        <Label layoutX="1080.0" layoutY="320.0" text="Research Car">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1012.0" layoutY="363.0" text=" - Tests for research">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1012.0" layoutY="393.0" text=" - Does not test parts">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1012.0" layoutY="423.0" text=" - Awards RP">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblResearchRP" alignment="CENTER" layoutX="1064.0" layoutY="456.0" prefHeight="25.0" prefWidth="120.0" text="RP: ----">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label fx:id="lblResearchCost" alignment="CENTER" layoutX="1064.0" layoutY="481.0" prefHeight="25.0" prefWidth="120.0" text="Cost € ------">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#80808063" height="200.0" layoutX="1014.0" layoutY="15.0" stroke="TRANSPARENT" strokeType="INSIDE" width="250.0" />
+                        <Label layoutX="1068.0" layoutY="22.0" text="Upgrade Facility">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1014.0" layoutY="65.0" text=" - Upgrades Wind-Tunnel Level">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1014.0" layoutY="95.0" text=" - Lowers part failure chance">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1014.0" layoutY="125.0" text=" - Increases RP from research">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblUpgradeCost" alignment="CENTER" layoutX="1065.0" layoutY="183.0" prefHeight="25.0" prefWidth="150.0" text="Cost € ------">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="359.0" layoutY="252.0" text=" - Does not award RP">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblFailureChance" alignment="CENTER" layoutX="400.0" layoutY="303.0" prefHeight="25.0" prefWidth="168.0" text="Success Chance: --.-%">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <TitledPane alignment="CENTER" collapsible="false" layoutX="619.0" layoutY="111.0" prefHeight="296.0" prefWidth="300.0" text="Testing Results">
+                           <content>
+                              <ListView fx:id="lstTestResults" prefHeight="250.0" prefWidth="300.0" />
+                           </content>
+                        </TitledPane>
+                        <Label layoutX="36.0" layoutY="116.0" text="Wind-tunnel uses" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                        <Label layoutX="1014.0" layoutY="155.0" text=" - Increases wind-tunnel uses">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblTunnelUses" alignment="CENTER" layoutX="97.0" layoutY="173.0" prefHeight="45.0" prefWidth="102.0" text="-- / --" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

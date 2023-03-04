@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ac.seasons.newSeason.carsFolder">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="lblCarsBrowse" disable="true" layoutX="548.0" layoutY="255.0" text="Assetto Corsa &quot;content/cars&quot; folder" />
+            <Button fx:id="btnBrowse" disable="true" layoutX="613.0" layoutY="297.0" mnemonicParsing="false" onAction="#btnBrowseClick" text="Browse" />
+            <TextField fx:id="txtContentCars" alignment="CENTER" disable="true" layoutX="366.0" layoutY="272.0" prefHeight="25.0" prefWidth="549.0" promptText="assettocorsa/content/cars/" />
+            <TextArea fx:id="tarBrowseInfo" disable="true" layoutX="479.0" layoutY="322.0" prefHeight="200.0" prefWidth="322.0" text="Sometimes the browse button &quot;freezes&quot; the app.&#10;&#10;If the app stops responding after pressing the browse &#10;button move the main window to the side.&#10;&#10;The browse button should be behind the main window &#10;and fully functioning. When the assetto corsa cars folder&#10;has been selected the main window should start&#10;functioning like normal." />
+            <Label fx:id="lblCarsFolderFound" alignment="CENTER" layoutX="513.0" layoutY="53.0" prefHeight="25.0" prefWidth="258.0" text="Assetto Corsa cars folder found:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblFilePath" alignment="CENTER" layoutX="291.0" layoutY="78.0" prefHeight="25.0" prefWidth="701.0" text="[filepath]">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCorrectFolder" layoutX="573.0" layoutY="111.0" text="Is this folder path correct?" />
+            <Button fx:id="btnYes" layoutX="775.0" layoutY="172.0" mnemonicParsing="false" onAction="#btnYesClick" text="Yes" />
+            <Button fx:id="btnNo" layoutX="463.0" layoutY="172.0" mnemonicParsing="false" onAction="#btnNoClick" text="No" />
+            <Button fx:id="btnReturnSeasonSetup" layoutX="453.0" layoutY="643.0" mnemonicParsing="false" onAction="#btnReturnSeasonSetupClick" text="Return" />
+            <Button fx:id="btnContinue" disable="true" layoutX="810.0" layoutY="681.0" mnemonicParsing="false" onAction="#btnContinueClick" text="Continue" />
+            <Button fx:id="btnReturn" layoutX="453.0" layoutY="681.0" mnemonicParsing="false" onAction="#btnReturnToMainMenu" text="Return to main menu" />
+         </children></AnchorPane>
+  </children>
+</VBox>

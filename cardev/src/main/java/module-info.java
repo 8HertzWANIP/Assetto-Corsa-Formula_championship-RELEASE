@@ -1,4 +1,4 @@
-module com.ac.backend {
+module com.ac {
     requires transitive javafx.graphics;
     requires transitive javafx.controls;
     requires transitive javafx.fxml;
@@ -9,7 +9,16 @@ module com.ac.backend {
 	requires java.net.http;
 
     opens com.ac to javafx.fxml;
-    opens com.ac.backend to javafx.fxml, com.google.gson;
-    exports com.ac.backend to javafx.fxml, com.google.gson;
-    exports com.ac;
+    opens com.ac.menus to javafx.fxml, javafx.graphics;
+    opens com.ac.menus.uiObjects to javafx.fxml, javafx.graphics;
+    opens com.ac.menus.facilities to javafx.fxml, com.google.gson;
+    opens com.ac.seasons.newSeason to javafx.fxml, javafx.graphics;
+    exports com.ac.fileparsing to javafx.fxml, com.google.gson;
+    exports com.ac to javafx.fxml, javafx.graphics;
+    exports com.ac.lib;
+    exports com.ac.AI;
+    exports com.ac.seasons.newSeason;
+    exports com.ac.menus to javafx.fxml, javafx.graphics;
+    exports com.ac.menus.facilities;
+    exports com.ac.menus.uiObjects;
 }
