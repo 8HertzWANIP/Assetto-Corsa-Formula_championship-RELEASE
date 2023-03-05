@@ -171,7 +171,7 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Label layoutX="754.0" layoutY="292.0" text="st" />
+                        <Label fx:id="lblFinishingPos2" layoutX="754.0" layoutY="292.0" text="st" />
                         <Label fx:id="lblCarFuel" alignment="CENTER" layoutX="357.0" layoutY="563.0" prefHeight="17.0" prefWidth="601.0" text="All team's car fuel levels have been reset. You can re-use them in a new season." />
                      </children>
                   </AnchorPane>

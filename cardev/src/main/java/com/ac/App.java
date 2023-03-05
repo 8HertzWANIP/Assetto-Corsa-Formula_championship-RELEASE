@@ -25,10 +25,10 @@ import com.ac.lib.aeroPart;
 
 
 /**
- * JavaFX App
+ * JavaFX App test
  */
 public class App extends Application {
-    protected static String currentVersion = "ALPHA-v0.2 DEV";
+    protected static String currentVersion = "ALPHA-v0.2.1";
 
     fileReader fParser = new fileReader();
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();
@@ -36,7 +36,7 @@ public class App extends Application {
     public static Stage loadedStage;
     public static String loadedProfile = "";
     public static String defaultWindow = "landingPage";
-    private final String environment = "DEV";
+    private final String environment = "PROD";
 
 
     @Override

@@ -40,6 +40,9 @@ public class endOfSeason implements Initializable {
     private Label lblCarFuel;
 
     @FXML
+    private Label lblFinishingPos2;
+
+    @FXML
     private Rectangle recTeamColor;
 
     @FXML
@@ -101,6 +104,21 @@ public class endOfSeason implements Initializable {
                 lblCarFuel.setText("Alpha-v0.1 save detected, car fuel could not be reset. Create new car folders if starting a new season.");
             else
                 lblCarFuel.setText("");
+
+            switch (uiAPI.returnTextInt(txtChampPos)) {
+                case 1:
+                    lblFinishingPos2.setText("st");
+                    break;
+                    case 2:
+                        lblFinishingPos2.setText("nd");
+                        break;
+                        case 3:
+                            lblFinishingPos2.setText("rd");
+                            break;
+            
+                default:
+                    break;
+            }
         }
     }
 

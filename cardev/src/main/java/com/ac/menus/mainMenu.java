@@ -52,7 +52,7 @@ public class mainMenu extends App implements Initializable{
     }
 
     void test(seasonSettings season) throws IOException {
-        if (season.getCurrentRace() >= season.getRaceCount()) {
+        if (season.getCurrentRace() > season.getRaceCount()) {
             System.out.println("Season finished");
             setRoot("endOfSeason");
         } else {

@@ -253,18 +253,22 @@ public class researchDevelopment extends App implements Initializable{
 
     @FXML
     void btnNextPageClick(ActionEvent event) {
-        if (partsToLoad.equals("installed"))
-            setPartUiPage(2, true);
-        else
-            setPartUiPage(2, false);
+        if (inventory.length > 9) {
+            if (partsToLoad.equals("installed"))
+                setPartUiPage(2, true);
+            else
+                setPartUiPage(2, false);
+        }
     }
 
     @FXML
     void btnPrevPageClick(ActionEvent event) {
-        if (partsToLoad.equals("installed"))
-            setPartUiPage(1, true);
-        else
-            setPartUiPage(1, false);
+        if (inventory.length > 9) {
+            if (partsToLoad.equals("installed"))
+                setPartUiPage(1, true);
+            else
+                setPartUiPage(1, false);
+        }
     }
 
     @FXML
@@ -482,7 +486,7 @@ public class researchDevelopment extends App implements Initializable{
         // Loads the inventory on facility load
         selectPartFromInventory();
         loadPartlistCombobox();
-        maxPartPages = Math.ceilDiv(inventory.length, 9);
+        maxPartPages = inventory.length / 9 + ((inventory.length % 9 == 0) ? 0 : 1);
         lblSelectedPartPage.setText("Page 1 / " + maxPartPages);
         // Load resDev facility info and add it in the UI
         lblRdExpNmbr.setText(Integer.toString(facilities.resDev.getExperience()) + " / " + teamFacilities.resDevLevelExpValues(season)[teamFacilities.getResDevLevelFromExp(facilities.resDev.getExperience(), season) + 1]);

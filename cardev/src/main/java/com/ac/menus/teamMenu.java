@@ -115,7 +115,7 @@ public class teamMenu extends App implements Initializable {
 
     @FXML
     void btnStartRaceClick(ActionEvent event) throws IOException {
-        if (season.getCurrentRace() >= season.getRaceCount()) {
+        if (season.getCurrentRace() > season.getRaceCount()) {
             try {
                 App.setRoot("endOfSeason");
             } catch (IOException e) {
@@ -150,7 +150,7 @@ public class teamMenu extends App implements Initializable {
 
     @FXML
     void btnfacilitiesClick(ActionEvent event) throws IOException {
-        if (season.getCurrentRace() >= season.getRaceCount()) {
+        if (season.getCurrentRace() > season.getRaceCount()) {
             try {
                 App.setRoot("endOfSeason");
             } catch (IOException e) {
@@ -215,7 +215,7 @@ public class teamMenu extends App implements Initializable {
             inventory =  jsonReader.parseAeroParts(playerTeam);
         }
         // Set player team UI elements
-        // btnResetCars.setVisible(false);
+        btnResetCars.setVisible(false);
         txtChampPos.setText(Integer.toString(playerTeam.getChampPos()));
         txtChhampPoints.setText(Integer.toString(playerTeam.getPoints()));
         txtMoney.setText(uiAPI.setCurrencyFormat(playerTeam.getMoney()));
