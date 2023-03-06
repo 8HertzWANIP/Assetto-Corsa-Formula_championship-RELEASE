@@ -201,6 +201,14 @@ public class teamMenu extends App implements Initializable {
         } else {
             cmbSelectedTeam.setVisible(false);
             playerTeam = uiAPI.loadPlayerTeam(season);
+
+            //ALPHA-V0.2.1 FIX
+            if (playerTeam.getController().equals("AI")) {
+                playerTeam.setController("Player Team");
+                playerTeam.ai = null;
+                jsonWriter.saveTeam(playerTeam);
+            }
+
             File facilitiesJson = new File(new JFileChooser().getFileSystemView().getDefaultDirectory().toString() + "\\Ac Cardev save data\\" + loadedProfile + "\\" + playerTeam.teamName + "\\facilities.json");
             if (!facilitiesJson.exists()){
                 jsonWriter.createFacilityJson(playerTeam, season);

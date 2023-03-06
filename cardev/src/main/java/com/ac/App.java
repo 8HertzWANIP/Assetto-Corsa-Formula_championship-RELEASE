@@ -28,7 +28,7 @@ import com.ac.lib.aeroPart;
  * JavaFX App test
  */
 public class App extends Application {
-    protected static String currentVersion = "ALPHA-v0.2.1";
+    protected static String currentVersion = "ALPHA-v0.2.2";
 
     fileReader fParser = new fileReader();
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();

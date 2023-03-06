@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import com.ac.AI.v02.ai_02_focus;
-import com.ac.AI.v02.ai_02_test;
 import com.ac.AI.v02.ai_02_wide;
 import com.ac.fileparsing.fileReader;
 import com.ac.fileparsing.jsonReader;
@@ -115,12 +114,6 @@ public class aiController {
         System.out.println("Starting Team AI");
         for (int i = 0; i < loadedTeams.size(); i++) {
             System.out.println("Starting Team [" + loadedTeams.get(i).getTeamName() + "]");
-            if (!loadedTeams.get(i).getController().equals("AI") && !loadedTeams.get(i).getController().equals("Player Team")) {
-                System.out.println("Team Controller [" + loadedTeams.get(i).getController() + "]");
-                loadedTeams.get(i).addAI("Random", "Random");
-                // loadedTeams.get(i).setController("AI");
-                jsonWriter.saveTeam(loadedTeams.get(i));
-            }
 
             // Switch on team controller.
             switch (loadedTeams.get(i).getController()) {
@@ -129,12 +122,6 @@ public class aiController {
                     break;                
                 case "AI":
                     switch (loadedTeams.get(i).ai.getPersonality()) {
-                        case "test":
-                            ai_02_test ai_02_test_pers = new ai_02_test();
-                            ai_02_test_pers.setAiTeam(loadedTeams.get(i));
-                            ai_02_test_pers.setSeason(season);
-                            ai_02_test_pers.startAi();
-                            break;
                         case "Wide":
                             ai_02_wide ai_02_wide = new ai_02_wide();
                             ai_02_wide.setAiTeam(loadedTeams.get(i));
@@ -176,14 +163,16 @@ public class aiController {
     }
 
     private void fixMissingAiInfo(teamSetup aiTeam) {
-        String pers = aiTeam.ai.getPersonality();
-        String phil = aiTeam.ai.getPhilosophy();
-        if (pers.equals(""))
-            pers = "Random";
-        if (phil.equals(""))
-            phil = "Random";
-        
-        aiTeam.addAI(pers, phil);
-        jsonWriter.saveTeam(aiTeam);
+        if (aiTeam.getController().equals("AI")) {
+            String pers = aiTeam.ai.getPersonality();
+            String phil = aiTeam.ai.getPhilosophy();
+            if (pers.equals(""))
+                pers = "Random";
+            if (phil.equals(""))
+                phil = "Random";
+            
+            aiTeam.addAI(pers, phil);
+            jsonWriter.saveTeam(aiTeam);
+        }
     }
 }
