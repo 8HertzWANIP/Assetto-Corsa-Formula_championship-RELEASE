@@ -52,6 +52,7 @@ public class incomeWindow implements Initializable {
         jsonWriter.saveFacilitiesToJson(facilities, playerTeam);
         jsonWriter.saveSeasonSettings(season);
         jsonWriter.savePartsToJson(inventory, playerTeam);
+        App.seasonData.loadSeasonData();
         if (season.getCurrentRace() > season.getRaceCount())
             App.setRoot("endOfSeason");
         else

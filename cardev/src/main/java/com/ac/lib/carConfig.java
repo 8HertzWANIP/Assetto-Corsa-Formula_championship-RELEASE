@@ -5,8 +5,7 @@ public class carConfig {
     public int maxFuel;
     public int oldFuel;
     public int oldMaxFuel;
-
-
+    
     public int getFuel() {
         return fuel;
     }

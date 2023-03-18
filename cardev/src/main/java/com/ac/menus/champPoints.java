@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javax.swing.JFileChooser;
@@ -38,7 +39,7 @@ public class champPoints extends App implements Initializable {
     public static int playerIndex;
     public static ArrayList<String> finishingPositionStrings = new ArrayList<String>();
     public static ArrayList<String> prizeMoneyStrings = new ArrayList<String>();
-    public static ArrayList<teamSetup> loadedTeams = new ArrayList<teamSetup>();
+    public static ArrayList<teamSetup> loadedTeams = App.seasonData.loadedTeams;
     public static ArrayList<Integer> pointListToAdd = new ArrayList<Integer>();
     public static ArrayList<Integer> moneyListToAdd = new ArrayList<Integer>();
     ArrayList<aeroPart> aeroParts = new ArrayList<aeroPart>();
@@ -253,7 +254,7 @@ public class champPoints extends App implements Initializable {
         finishingPositionStrings = new ArrayList<String>();
         prizeMoneyStrings = new ArrayList<String>();
         
-        if (loadedTeams.size() == 0) {
+        if (Objects.isNull(loadedTeams)) {
             loadTeamlist();
         }
         try {

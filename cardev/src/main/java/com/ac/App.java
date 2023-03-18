@@ -21,6 +21,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.ac.fileparsing.fileReader;
 import com.ac.lib.aeroPart;
+import com.ac.lib.seasonData;
 
 
 
@@ -28,7 +29,7 @@ import com.ac.lib.aeroPart;
  * JavaFX App test
  */
 public class App extends Application {
-    protected static String currentVersion = "ALPHA-v0.2.2";
+    protected static String currentVersion = "ALPHA-v0.2.3";
 
     fileReader fParser = new fileReader();
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();
@@ -36,7 +37,8 @@ public class App extends Application {
     public static Stage loadedStage;
     public static String loadedProfile = "";
     public static String defaultWindow = "landingPage";
-    private final String environment = "PROD";
+    public final String environment = "PROD";
+    public static seasonData seasonData = null;
 
 
     @Override
@@ -98,4 +100,8 @@ public class App extends Application {
         launch();
     }
 
+    public static void setSeasonData() {
+        seasonData = new seasonData();
+        seasonData.loadSeasonData();
+    }
 }

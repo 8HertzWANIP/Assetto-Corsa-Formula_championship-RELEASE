@@ -259,7 +259,79 @@ public class fileReader {
     
     public static carConfig fillCarStats(String file)
     {
-        carConfig car = new carConfig(0, 0, 0, 0);
+        carConfig car = getFuel(file, new carConfig(0, 0, 0, 0));
+
+        return car;
+    }
+
+    public static teamSetup getSetupAngles(teamSetup team) {
+        teamSetup.carInfo carInfo = team.carInfo;
+        carInfo.FwStep = -1;
+        carInfo.RwStep = -1;
+        try {
+            // Open the file that is the first 
+            // command line parameter
+            FileInputStream fstream = new FileInputStream(team.getCarFolder() + "\\data\\setup.ini");
+            // Get the object of DataInputStream
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            boolean frontWing = false;
+            boolean readFile = true;
+            boolean skipEntry = true;
+            //Read File Line By Line
+            while ((strLine = br.readLine()) != null && readFile) {
+                if (strLine.equals("NAME=Front Wing")) {
+                    frontWing = true;
+                    skipEntry = false;
+                    System.out.println("Boolean frontwing [" + frontWing + "]");
+                } else if (strLine.equals("NAME=Rear Wing")) {
+                    frontWing = false;
+                    skipEntry = false;
+                    System.out.println("Boolean frontwing [" + frontWing + "]");
+                }
+                if (!skipEntry) {
+                    if (strLine.contains("MIN=")) {
+                        System.out.println(strLine);
+                        String s = strLine.replace("MIN=", "");
+                        if (frontWing) {
+                            carInfo.FwMinAngle = Integer.parseInt(s);
+                        } else {
+                            carInfo.RwMinAngle = Integer.parseInt(s);
+                        }
+                    }
+                    if (strLine.contains("MAX=")) {
+                        System.out.println(strLine);
+                        String s = strLine.replace("MAX=", "");
+                        if (frontWing) {
+                            carInfo.FwMaxAngle = Integer.parseInt(s);
+                        } else {
+                            carInfo.RwMaxAngle = Integer.parseInt(s);
+                        }
+                    }
+                    if (strLine.contains("STEP=")) {
+                        System.out.println(strLine);
+                        String s = strLine.replace("STEP=", "");
+                        if (frontWing) {
+                            carInfo.FwStep = Integer.parseInt(s);
+                        } else {
+                            carInfo.RwStep = Integer.parseInt(s);
+                            readFile = false;
+                        }
+                    }
+                }
+            }
+            in.close();
+        }
+        catch (Exception e){
+            //Catch exception if any
+            System.err.println("Error: " + e.getMessage());
+        }
+        team.carInfo = carInfo;
+        return team;
+    }
+
+    private static carConfig getFuel(String file, carConfig car) {
         try{
             // Open the file that is the first 
             // command line parameter
@@ -296,5 +368,6 @@ public class fileReader {
             System.err.println("Error: " + e.getMessage());
         }
         return car;
+        
     }
 }

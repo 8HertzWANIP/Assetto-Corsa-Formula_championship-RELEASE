@@ -36,11 +36,13 @@ public class ai_02_focus {
         this.aiTeam = targetTeam;
     }
 
+    public void setInventory(aeroPartInventory[] inventory) {
+        this.inventory = inventory;
+    }
+
     /** Loads all required variables for the various stages of the AI*/
     public void startAi() {
-        aiAPI.doFacilitiesExist(aiTeam, season);
         facilities = jsonReader.parseFacilities(aiTeam);
-        inventory = jsonReader.parseAeroParts(aiTeam);
         privTestingAllowed = season.regulations.privTesting;
         if (season.getCurrentRace() > 0)
             giveAiRaceRp();
@@ -142,7 +144,6 @@ public class ai_02_focus {
                     facilities.wTunnel.chargesSpent++;
                     facilities.wTunnel.setCharges(season.getCurrentRace());
                 }
-                
                 break;
 
             case "genRP":

@@ -6,9 +6,10 @@ import java.util.Objects;
 import com.ac.AI.v02.ai_02_focus;
 import com.ac.AI.v02.ai_02_wide;
 import com.ac.fileparsing.fileReader;
+import com.ac.fileparsing.fileWriter;
 import com.ac.fileparsing.jsonReader;
 import com.ac.fileparsing.jsonWriter;
-import com.ac.lib.aeroPart;
+import com.ac.lib.aeroPartInventory;
 import com.ac.seasons.newSeason.seasonSettings;
 import com.ac.seasons.newSeason.teamSetup;
 
@@ -22,59 +23,22 @@ public class aiController {
     jsonReader jReader = new jsonReader();
     fileReader fReader = new fileReader();
     ArrayList<teamSetup> loadedTeams = new ArrayList<teamSetup>();
-    ArrayList<aeroPart> aeroParts = new ArrayList<aeroPart>();
-    seasonSettings season = new seasonSettings(
-        "",
-        0,
-        0,
-        0,
-        0,
-        0,
-        0f,
-        0f,
-        0f,
-        0f,
-        1000,
-        0,
-        0,
-        0,
-        0,
-        false,
-        false,
-        false,
-        false,
-        null,
-        null
-        );
-    
-    float dForceCost;
-    float dragCost;
-    float maxDf;
-    float maxDr;
-    float minDf;
-    float minDr;
-    float aeroIncreaseRate = 1.0f;
-    float dragIncreaseRate = 1.0f;
+    ArrayList<aeroPartInventory[]> loadedInventories = new ArrayList<aeroPartInventory[]>();
 
-    Double improveDownforceFunds;
-    Double improveDragFunds;
+    seasonSettings season = new seasonSettings("", 0, 0, 0, 0, 0, 0f, 0f, 0f, 0f, 1000, 0, 0, 0, 0, false, false, false, false, null, null );
 
-    Double loadedDownforce;
-    Double loadedDrag;
-
-    Double dfIncrease = 0d;
-    Double dragDecrease = 0d;
-
-    int partInvestment;
     int[] aiFocusBalanced = {50, 50, 50, 50};
     int[] aiFocusDownforce = {50, 60, 65, 75};
     int[] aiFocusDrag = {50, 40, 35, 30};
-    public int fwAngle;
-    public int rwAngle;
     public String loadingLabelString;
-    public double progressbarValue = 0;
+    
+    public void setLoadedTeams(ArrayList<teamSetup> loadedTeams) {
+        this.loadedTeams = loadedTeams;
+    }
 
-    public static int aiPrivateTestingMinFunds = 0;
+    public void setLoadedInventories(ArrayList<aeroPartInventory[]> loadedInventories) {
+        this.loadedInventories = loadedInventories;
+    }
 
     @FXML
     private Label lblLoadingTeam;
@@ -83,26 +47,16 @@ public class aiController {
         this.lblLoadingTeam = lblLoadingTeam;
     }
 
-    public void init(ArrayList<String> teamList) throws InterruptedException {
+    public void init() throws InterruptedException {
         season = jsonReader.parseSeasonSettings();
 
-        maxDf = season.baseline * (season.maxDownforce / 100);
-        minDf = season.baseline * (season.minDownforce / 100);
-        maxDr = season.baseline * (season.maxDrag / 100);
-        minDr = season.baseline * (season.minDrag / 100);
-        aeroIncreaseRate = season.returnDifficultyValue(season.difficulty);
-        dragIncreaseRate = season.returnDifficultyValue(season.difficulty);
-
-        aiPrivateTestingMinFunds = season.getTotalPrizePool() * 20000;
-
-        System.out.println("Season Loaded");
+        System.out.println("Season Loaded, validating AI");
         for (int i = 0; i < season.teamCount; i++) {
-            if (teamList.get(i) != null) {
-                loadedTeams.add(jsonReader.parseTeam(teamList.get(i)));
+            if (loadedTeams.get(i) != null) {
                 if (Objects.nonNull(loadedTeams.get(i).ai))
                     fixMissingAiInfo(loadedTeams.get(i));
             } else {
-                System.out.println("Target team is null: [" + teamList.get(i) + "]");
+                System.out.println("Target team is null: [" + loadedTeams.get(i).getTeamName() + "]");
             }
         }
         System.out.println("Teams loaded");
@@ -118,13 +72,14 @@ public class aiController {
             // Switch on team controller.
             switch (loadedTeams.get(i).getController()) {
                 case "Player Team":
-                    
+                    fileWriter.writeNewAeroStats(loadedTeams.get(i), loadedInventories.get(i), season);
                     break;                
                 case "AI":
                     switch (loadedTeams.get(i).ai.getPersonality()) {
                         case "Wide":
                             ai_02_wide ai_02_wide = new ai_02_wide();
                             ai_02_wide.setAiTeam(loadedTeams.get(i));
+                            ai_02_wide.setInventory(loadedInventories.get(i));
                             ai_02_wide.setSeason(season);
                             ai_02_wide.setFocusRate(getAiFocusRate(loadedTeams.get(i)));
                             ai_02_wide.startAi();
@@ -132,6 +87,7 @@ public class aiController {
                         case "Focussed":
                             ai_02_focus ai_02_focus = new ai_02_focus();
                             ai_02_focus.setAiTeam(loadedTeams.get(i));
+                            ai_02_focus.setInventory(loadedInventories.get(i));
                             ai_02_focus.setSeason(season);
                             ai_02_focus.setFocusRate(getAiFocusRate(loadedTeams.get(i)));
                             ai_02_focus.startAi();
@@ -163,7 +119,7 @@ public class aiController {
     }
 
     private void fixMissingAiInfo(teamSetup aiTeam) {
-        if (aiTeam.getController().equals("AI")) {
+        if (aiTeam.getController().equals("AI") && aiTeam.getController() != season.getPlayerTeam()) {
             String pers = aiTeam.ai.getPersonality();
             String phil = aiTeam.ai.getPhilosophy();
             if (pers.equals(""))

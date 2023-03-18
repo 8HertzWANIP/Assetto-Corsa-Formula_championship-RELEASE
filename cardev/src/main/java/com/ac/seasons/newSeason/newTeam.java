@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 import com.ac.App;
+import com.ac.fileparsing.fileReader;
 import com.ac.fileparsing.jsonWriter;
 import com.ac.lib.carScaler;
 
@@ -91,13 +92,16 @@ public class newTeam extends App implements Initializable {
                 radPlayer.setSelected(false);
                 radPlayer.setDisable(true);
                 newSeason.season.setPlayerTeam(targetTeam.getTeamName());
-            } else if (radAi.isSelected()
+            } 
+            else if (radAi.isSelected()
             && Objects.nonNull(cmbPhil.getValue())
             && Objects.nonNull(cmbPers.getValue())
             && !cmbPhil.getValue().equals("")
             && !cmbPers.getValue().equals("")) {
                 targetTeam.addAI(cmbPers.getValue(), cmbPhil.getValue());
             }
+
+            targetTeam = fileReader.getSetupAngles(targetTeam);
             teamList.add(targetTeam.getTeamName());
             jsonWriter.saveTeam(targetTeam);
             teamIndex++;

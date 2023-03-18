@@ -5,15 +5,19 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javax.swing.JFileChooser;
 
 import com.ac.App;
+import com.ac.AI.aiAPI;
 import com.ac.AI.aiController;
+import com.ac.fileparsing.fileReader;
 import com.ac.fileparsing.jsonReader;
 import com.ac.fileparsing.jsonWriter;
 import com.ac.lib.aeroPart;
+import com.ac.lib.aeroPartInventory;
 import com.ac.seasons.newSeason.seasonSettings;
 import com.ac.seasons.newSeason.teamSetup;
 
@@ -26,6 +30,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -33,33 +39,11 @@ public class startRace extends App implements Initializable {
     ArrayList<Double> teamRatings = new ArrayList<Double>();
     ArrayList<Pane> uiCarTypes;
     aiController ai_controller_1 = new aiController();
-    public static ArrayList<teamSetup> loadedTeams = new ArrayList<teamSetup>();
-    public static ArrayList<carAngleSetup> carAngleSetups = new ArrayList<carAngleSetup>();
+    static ArrayList<aeroPartInventory[]> loadedInventories;
+    public static ArrayList<teamSetup> loadedTeams;
     public static int carAngleSetupIndex = 0;
     ArrayList<aeroPart> aeroParts = new ArrayList<aeroPart>();
-    seasonSettings season = new seasonSettings(
-        "",
-        0,
-        0,
-        0,
-        0,
-        0,
-        0f,
-        0f,
-        0f,
-        0f,
-        1000,
-        0,
-        0,
-        0,
-        0,
-        false,
-        false,
-        false,
-        false,
-        null,
-        null
-        );
+    seasonSettings season = new seasonSettings("", 0, 0, 0, 0, 0, 0f, 0f, 0f, 0f, 1000, 0, 0, 0, 0, false, false, false, false, null, null);
     @FXML
     private Button btnCancelRace;
 
@@ -76,10 +60,55 @@ public class startRace extends App implements Initializable {
     private CheckBox chkPreSeasonTesting;
 
     @FXML
+    private Button btnDownforceInc;
+
+    @FXML
+    private Button btnDownforceMax;
+
+    @FXML
+    private Button btnDownforceMin;
+
+    @FXML
+    private Button btnDownforceRed;
+
+    @FXML
+    private Button btnDownforceAvg;
+
+    @FXML
     private Label lblRaceCount;
 
     @FXML
     private Label lblPreseasonTesting;
+
+    @FXML
+    private Label lblDownforceAvg;
+
+    @FXML
+    private Label lblDownforceInc;
+
+    @FXML
+    private Label lblDownforceMax;
+
+    @FXML
+    private Label lblDownforceMin;
+
+    @FXML
+    private Label lblDownforceRed;
+
+    @FXML
+    private Label lblDragAvg;
+
+    @FXML
+    private Label lblDragInc;
+
+    @FXML
+    private Label lblDragMax;
+
+    @FXML
+    private Label lblDragMin;
+
+    @FXML
+    private Label lblDragRed;
     
     @FXML
     private Label lblLoadingTeam;
@@ -89,6 +118,15 @@ public class startRace extends App implements Initializable {
 
     @FXML
     private AnchorPane paneRace;
+
+    @FXML
+    private Slider sldDownforceLvl;
+
+    @FXML
+    void sldDownforceLvlDrop(MouseEvent event) {
+        setTrackDownforceLevel((int) Math.round(sldDownforceLvl.getValue()));
+        setDfUi((int) Math.round(sldDownforceLvl.getValue()));
+    }
 
     @FXML
     void btnCancelRaceClick(ActionEvent event) throws IOException {
@@ -115,15 +153,12 @@ public class startRace extends App implements Initializable {
 
     @FXML
     void btnStartRaceClick(ActionEvent event) throws InterruptedException, IOException {
-        ArrayList<String> teamList = new ArrayList<String>();
-        for (int i = 0; i < season.getTeamCount(); i++) {
-            teamList.add(loadedTeams.get(i).getTeamName());
-        }
-        // ai_controller_1.fwAngle = carAngleSetups.get(0).getFwAngle();
-        // ai_controller_1.rwAngle = carAngleSetups.get(0).getRwAngle();
+        sldDownforceLvl.setVisible(false);
         if (!season.raceCanceled) {
             ai_controller_1.setLblLoadingTeam(lblLoadingTeam);
-            ai_controller_1.init(teamList);
+            ai_controller_1.setLoadedTeams(loadedTeams);
+            ai_controller_1.setLoadedInventories(loadedInventories);
+            ai_controller_1.init();
         } else {
             lblLoadingTeam.setText("AI Teams setup. You can start the session in Assetto Corsa");
         }
@@ -139,6 +174,7 @@ public class startRace extends App implements Initializable {
             jsonWriter.saveSeasonSettings(season);
             App.setRoot("incomeWindow");
         } else {
+            season.setTrackDownforceInt((int) Math.round(sldDownforceLvl.getValue()));
             season.setRaceCanceled(true);
             btnFinishRace.setDisable(false);
             btnCancelRace.setDisable(false);
@@ -149,6 +185,8 @@ public class startRace extends App implements Initializable {
     }
 
     private void loadTeamlist() {
+        loadedTeams = new ArrayList<teamSetup>();
+        loadedInventories = new ArrayList<aeroPartInventory[]>();
         File file = new File(new JFileChooser().getFileSystemView().getDefaultDirectory().toString() + "\\Ac Cardev save data\\" + loadedProfile);
         String[] directories = file.list(new FilenameFilter() {
             @Override
@@ -167,6 +205,12 @@ public class startRace extends App implements Initializable {
         for (int i = 0; i < season.teamCount; i++) {
             if (teamList.get(i) != null) {
                 loadedTeams.add(jsonReader.parseTeam(teamList.get(i)));
+                aiAPI.doFacilitiesExist(loadedTeams.get(i), season);
+                if (loadedTeams.get(i).controller.equals("Player Team") && !season.getPlayerTeam().equals(loadedTeams.get(i).getTeamName())) {
+                    loadedTeams.get(i).setController("AI");
+                    jsonWriter.saveTeam(loadedTeams.get(i));
+                }
+                loadedInventories.add(jsonReader.parseAeroParts(loadedTeams.get(i)));
                 System.out.println("Team: [" + loadedTeams.get(i).getTeamName() + "] loaded");
             } else {
                 System.out.println("Target team is null: [" + teamList.get(i) + "]");
@@ -174,73 +218,114 @@ public class startRace extends App implements Initializable {
         }
     }
 
-    //TODO REFACTOR WINGANGLE SCRIPT
-    private void generateDownforceLevelUi() throws IOException {
-        // int[] angles = {0, 0};
-        // System.out.println("Generating track downforce UI");
-        // carAngleSetups = new ArrayList<carAngleSetup>();
-        // ArrayList<String> carTeamList = new ArrayList<String>();
+    private void setTrackDownforceLevel(int downforceSetting) {
+        int fwTotalSteps;
+        int rwTotalSteps;
+        int fwSetupAngle;
+        int rwSetupAngle;
+        int fwAngle;
+        int rwAngle;
+        for (int i = 0; i < loadedTeams.size(); i++) {
+            teamSetup.carInfo car = loadedTeams.get(i).carInfo;
+    
+            switch (downforceSetting) {
+                case 0:
+                    loadedInventories.set(i, setInventoryWingAngles(true, car.FwMinAngle, loadedInventories.get(i)));
+                    loadedInventories.set(i, setInventoryWingAngles(false, car.RwMinAngle, loadedInventories.get(i)));
+                    break;
+                    
+                case 1:
+                    fwTotalSteps = (car.FwMaxAngle - car.FwMinAngle) / car.FwStep;
+                    rwTotalSteps = (car.RwMaxAngle - car.RwMinAngle) / car.RwStep;
+                    fwSetupAngle = Math.round(fwTotalSteps / 2) - Math.round(fwTotalSteps / 4);
+                    rwSetupAngle = Math.round(rwTotalSteps / 2) - Math.round(rwTotalSteps / 4) + 1;
+                    fwAngle = fwSetupAngle * car.FwStep;
+                    rwAngle = rwSetupAngle * car.RwStep;
+                    loadedInventories.set(i, setInventoryWingAngles(true, fwAngle, loadedInventories.get(i)));
+                    loadedInventories.set(i, setInventoryWingAngles(false, rwAngle, loadedInventories.get(i)));
+                    break;
+                    
+                case 2:
+                    fwTotalSteps = (car.FwMaxAngle - car.FwMinAngle) / car.FwStep;
+                    rwTotalSteps = (car.RwMaxAngle - car.RwMinAngle) / car.RwStep;
+                    fwSetupAngle = Math.round(fwTotalSteps / 2);
+                    rwSetupAngle = Math.round(rwTotalSteps / 2) + 1;
+                    fwAngle = fwSetupAngle * car.FwStep;
+                    rwAngle = rwSetupAngle * car.RwStep;
+                    loadedInventories.set(i, setInventoryWingAngles(true, fwAngle, loadedInventories.get(i)));
+                    loadedInventories.set(i, setInventoryWingAngles(false, rwAngle, loadedInventories.get(i)));
+                    break;
+                    
+                case 3:
+                    fwTotalSteps = (car.FwMaxAngle - car.FwMinAngle) / car.FwStep;
+                    rwTotalSteps = (car.RwMaxAngle - car.RwMinAngle) / car.RwStep;
+                    fwSetupAngle = Math.round(fwTotalSteps / 2) + Math.round(fwTotalSteps / 4);
+                    rwSetupAngle = Math.round(rwTotalSteps / 2) + Math.round(rwTotalSteps / 4) + 1;
+                    fwAngle = fwSetupAngle * car.FwStep;
+                    rwAngle = rwSetupAngle * car.RwStep;
+                    loadedInventories.set(i, setInventoryWingAngles(true, fwAngle, loadedInventories.get(i)));
+                    loadedInventories.set(i, setInventoryWingAngles(false, rwAngle, loadedInventories.get(i)));
+                    break;
+                    
+                case 4:
+                    loadedInventories.set(i, setInventoryWingAngles(true, car.FwMaxAngle, loadedInventories.get(i)));
+                    loadedInventories.set(i, setInventoryWingAngles(false, car.RwMaxAngle, loadedInventories.get(i)));
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
 
-        // // copy teams info to teamPointsIndex class for ordering.
-        // for (int i = 0; i < loadedTeams.size(); i++) {
-        //     teamSetup targetTeam = loadedTeams.get(i);
-        //     fileReader.clearAeroParts();
-        //     fileReader.fillAeroParts(targetTeam.getCarFolder() + "\\data\\aero.ini");
-        //     ArrayList<aeroPart> aeroParts = fileReader.getAeroParts();
-        //     boolean newCarType = false;
-        //     boolean onlyOnce = true;
-        //     System.out.println("Checking targetTeam: [" + targetTeam.getTeamName() + "] part size: [" + aeroParts.size() + "]");
-        //     for (int j = 0; j < aeroParts.size(); j++) {
-        //         aeroPart part = aeroParts.get(j);
-        //         if (part.getlabel().equals("Front Wing") || part.getlabel().equals("FW")) {
-        //             if (part.getAngle() != angles[0]) {
-        //                 System.out.println("Checking Part: [" + part.getlabel() + "] Angle 0: [" + part.getAngle() + "]");
-        //                 angles[0] = part.getAngle();
-        //                 newCarType = true;
-        //             } else if (part.getAngle() == angles[0]) {
-        //                 newCarType = false;
-        //             }
-        //         } else if (part.getlabel().equals("Rear Wing") || part.getlabel().equals("RW")) {
-        //             if (part.getAngle() != angles[1]) {
-        //                 System.out.println("Checking Part: [" + part.getlabel() + "] Angle 1: [" + part.getAngle() + "]");
-        //                 angles[1] = part.getAngle();
-        //                 newCarType = true;
-        //             } else if (part.getAngle() == angles[1]) {
-        //                 newCarType = false;
-        //             }
-        //         } else if (angles[0] != 0 && angles[1] != 0 && newCarType && onlyOnce) {
-        //             carTeamList.add(targetTeam.getTeamName());
-        //             carAngleSetup car = new carAngleSetup(angles[0], angles[1], angles[0], angles[1], carTeamList);
-        //             System.out.println("carTeamList size: [" + carTeamList.size() + "]");
-        //             carAngleSetups.add(car);
-        //             newCarType = false;
-        //             onlyOnce = false;
-        //             break;
-        //         } else if (!newCarType && carAngleSetups.size() > 0) {
-        //             carTeamList.add(targetTeam.getTeamName());
-        //             carAngleSetup car = new carAngleSetup(angles[0], angles[1], angles[0], angles[1], carTeamList);
-        //             System.out.println("carTeamList size: [" + carTeamList.size() + "]");
-        //             carAngleSetups.set(carAngleSetups.size() - 1, car);
-        //             break;
-        //         }
-        //     }
-        // }
+    private static int getInventoryWingAngles(boolean frontWing, aeroPartInventory[] inventory) {
+        String[] fwStrings = {"fw", "front wing"};
+        String[] rwStrings = {"rw", "rear wing"};
 
-        // uiCarTypes = new ArrayList<Pane>();
-        // for (int i = 0; i < carAngleSetups.size(); i++) {
-        //     carAngleSetupIndex = i;
-        //     System.out.println("Drawing car setup windows. Size is: [" + carAngleSetups.size() + "]");
-        //     Pane newLoadedPane =  FXMLLoader.load(getClass().getResource("trackDownforceObject.fxml"));
-        //     newLoadedPane.setLayoutX(10);
-        //     newLoadedPane.setLayoutY(100 + (160 * i));
-        //     paneRace.getChildren().add(newLoadedPane);
-        //     uiCarTypes.add(newLoadedPane);
-        // }
+        for (int i = 0; i < inventory.length; i++) {
+            if (frontWing) {
+                if (inventory[i].part_name.toLowerCase().contains(fwStrings[0]) || inventory[i].part_name.toLowerCase().contains(fwStrings[1])) {
+                    System.out.println("Angle front wing is: [" + inventory[i].angle + "]");
+                    return inventory[i].angle;
+                }
+            } else {
+                if (inventory[i].part_name.toLowerCase().contains(rwStrings[0]) || inventory[i].part_name.toLowerCase().contains(rwStrings[1])) {
+                    System.out.println("Angle rear wing is: [" + inventory[i].angle + "]");
+                    return inventory[i].angle;
+                }
+            }
+        }
+        return -1;
+    }
+
+    private static aeroPartInventory[] setInventoryWingAngles(boolean frontWing, int value, aeroPartInventory[] inventory) {
+        System.out.println("Setting inventory angles");
+        System.out.println("value: " + value);
+        String[] fwStrings = {"fw", "front wing"};
+        String[] rwStrings = {"rw", "rear wing"};
+
+        for (int i = 0; i < inventory.length; i++) {
+            if (frontWing) {
+                if (inventory[i].part_name.toLowerCase().contains(fwStrings[0]) || inventory[i].part_name.toLowerCase().contains(fwStrings[1])) {
+                    inventory[i].angle = value;
+                    System.out.println("Angle front wing is: [" + inventory[i].angle + "]");
+                }
+            } else {
+                if (inventory[i].part_name.toLowerCase().contains(rwStrings[0]) || inventory[i].part_name.toLowerCase().contains(rwStrings[1])) {
+                    inventory[i].angle = value;
+                    System.out.println("Angle rear wing is: [" + inventory[i].angle + "]");
+                }
+            }
+        }
+        return inventory;
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         season = jsonReader.parseSeasonSettings();
+        int downforceLevel = 2;
+        if (season.raceCanceled)
+            downforceLevel = season.trackDownforceInt;
 
         lblLoadingTeam.setText("Press 'Start Session' before starting the session in Assetto Corsa");
         chkPreSeasonTesting.setSelected(false);
@@ -252,63 +337,91 @@ public class startRace extends App implements Initializable {
             lblPreseasonTesting.setVisible(false);
             chkPreSeasonTesting.setVisible(false);
         }
-
-        if (loadedTeams.size() == 0) {
-            loadTeamlist();
+        
+        if (Objects.isNull(loadedTeams)) {
+            loadedTeams = App.seasonData.loadedTeams;
+            loadedInventories = App.seasonData.loadedInventories;
+            validateTeamSetupInfo();
         }
-        try {
-            generateDownforceLevelUi();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sldDownforceLvl.setValue(downforceLevel);
+        setTrackDownforceLevel(downforceLevel);
+        setDfUi(downforceLevel);
         System.out.print("Current race: [" + season.getCurrentRace() + "]");
         lblRaceCount.setText(season.getCurrentRace() + " / " + season.getRaceCount());
     }
-    
-    public class carAngleSetup {
-        int defaultFwAngle;
-        int defaultRwAngle;
-        int fwAngle;
-        int rwAngle;
-        ArrayList<String> teams;
 
-        public carAngleSetup(int defaultFwAngle, int defaultRwAngle, int fwAngle, int rwAngle, ArrayList<String> teams) {
-            this.defaultFwAngle = defaultFwAngle;
-            this.defaultRwAngle = defaultRwAngle;
-            this.fwAngle = fwAngle;
-            this.rwAngle = rwAngle;
-            this.teams = teams;
-        }
-        public int getDefaultFwAngle() {
-            return defaultFwAngle;
-        }
-        public void setDefaultFwAngle(int defaultFwAngle) {
-            this.defaultFwAngle = defaultFwAngle;
-        }
-        public int getDefaultRwAngle() {
-            return defaultRwAngle;
-        }
-        public void setDefaultRwAngle(int defaultRwAngle) {
-            this.defaultRwAngle = defaultRwAngle;
-        }
-        public int getFwAngle() {
-            return fwAngle;
-        }
-        public void setFwAngle(int fwAngle) {
-            this.fwAngle = fwAngle;
-        }
-        public int getRwAngle() {
-            return rwAngle;
-        }
-        public void setRwAngle(int rwAngle) {
-            this.rwAngle = rwAngle;
-        }
-        public ArrayList<String> getTeams() {
-            return teams;
-        }
-        public void setTeams(ArrayList<String> teams) {
-            this.teams = teams;
+    private void validateTeamSetupInfo() {
+        for (int i = 0; i < season.teamCount; i++) {
+            teamSetup targetTeam = loadedTeams.get(i);
+            aeroPartInventory[] targetInventory = loadedInventories.get(i);
+            if (targetTeam != null) {
+                if ((targetTeam.carInfo.FwStep == 0 && targetTeam.carInfo.RwStep == 0) || Objects.isNull(targetTeam.carInfo.FwStep)) {
+                    targetTeam = fileReader.getSetupAngles(targetTeam);
+                    targetTeam.carInfo.setFwAngle(getInventoryWingAngles(true, targetInventory));
+                    targetTeam.carInfo.setRwAngle(getInventoryWingAngles(false, targetInventory));
+                    jsonWriter.saveTeam(targetTeam);
+                }
+            } else {
+                System.out.println("Target team is null");
+            }
         }
     }
 
+    private void setDfUi(int value) {
+        if (season.raceCanceled) {
+            sldDownforceLvl.setVisible(false);
+        } else {
+            sldDownforceLvl.setVisible(true);
+        }
+        btnDownforceInc.setDisable(true);
+        btnDownforceMax.setDisable(true);
+        btnDownforceMin.setDisable(true);
+        btnDownforceRed.setDisable(true);
+        btnDownforceAvg.setDisable(true);
+        lblDownforceAvg.setVisible(false);
+        lblDownforceInc.setVisible(false);
+        lblDownforceMax.setVisible(false);
+        lblDownforceMin.setVisible(false);
+        lblDownforceRed.setVisible(false);
+        lblDragAvg.setVisible(false);
+        lblDragInc.setVisible(false);
+        lblDragMax.setVisible(false);
+        lblDragMin.setVisible(false);
+        lblDragRed.setVisible(false);
+        switch (value) {
+            case 0:
+                btnDownforceMin.setDisable(false);
+                lblDownforceMin.setVisible(true);
+                lblDragMin.setVisible(true);
+            break;
+                
+            case 1:
+                btnDownforceRed.setDisable(false);
+                lblDownforceRed.setVisible(true);
+                lblDragRed.setVisible(true);
+            break;
+                
+            case 2:
+                btnDownforceAvg.setDisable(false);
+                lblDownforceAvg.setVisible(true);
+                lblDragAvg.setVisible(true);
+                break;
+                
+            case 3:
+                btnDownforceInc.setDisable(false);
+                lblDownforceInc.setVisible(true);
+                lblDragInc.setVisible(true);
+            break;
+                
+            case 4:
+                btnDownforceMax.setDisable(false);
+                lblDownforceMax.setVisible(true);
+                lblDragMax.setVisible(true);
+            break;
+                
+            default:
+                break;
+        }
+        
+    }
 }

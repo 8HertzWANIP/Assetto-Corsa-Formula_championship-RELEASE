@@ -36,11 +36,13 @@ public class ai_02_wide {
         this.aiTeam = targetTeam;
     }
 
+    public void setInventory(aeroPartInventory[] inventory) {
+        this.inventory = inventory;
+    }
+
     /** Loads all required variables for the various stages of the AI*/
     public void startAi() {
-        aiAPI.doFacilitiesExist(aiTeam, season);
         facilities = jsonReader.parseFacilities(aiTeam);
-        inventory = jsonReader.parseAeroParts(aiTeam);
         privTestingAllowed = season.regulations.privTesting;
         if (season.getCurrentRace() > 0)
             giveAiRaceRp();
@@ -158,6 +160,7 @@ public class ai_02_wide {
     }
 
     private void privTesting() {
+        System.out.println("AI Starting private testing");
         int [] calcRP = teamFacilities.returnPrivTestingRP(aeroAPI.countUntestedParts(inventory), facilities, season);
         
         int costMultiplyer = 35000;

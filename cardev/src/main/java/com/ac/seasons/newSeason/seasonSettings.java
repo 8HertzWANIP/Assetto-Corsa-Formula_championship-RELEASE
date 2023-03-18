@@ -28,6 +28,7 @@ public class seasonSettings {
     public int difficulty;
     public int raceRewards;
     public int currentRace;
+    public int trackDownforceInt;
     public boolean equalDev;
     public boolean equalFunds;
     public boolean raceCanceled;
@@ -65,6 +66,7 @@ public class seasonSettings {
         this.difficulty = difficulty;
         this.raceRewards = raceRewards;
         this.currentRace = currentRace;
+        this.trackDownforceInt = 2;
         this.equalDev = equalDev;
         this.equalFunds = equalFunds;
         this.raceCanceled = raceCanceled;
@@ -121,6 +123,14 @@ public class seasonSettings {
 
     public void setRaceCanceled(boolean raceCanceled) {
         this.raceCanceled = raceCanceled;
+    }
+
+    public int getTrackDownforceInt() {
+        return trackDownforceInt;
+    }
+
+    public void setTrackDownforceInt(int trackDownforceInt) {
+        this.trackDownforceInt = trackDownforceInt;
     }
 
     public boolean isPreseasonTestingCompleted() {

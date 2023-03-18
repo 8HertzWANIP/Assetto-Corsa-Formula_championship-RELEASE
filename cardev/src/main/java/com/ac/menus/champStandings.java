@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javax.swing.JFileChooser;
@@ -31,7 +32,7 @@ public class champStandings extends App implements Initializable {
 
     fileReader fReader = new fileReader();
     ArrayList<Double> teamRatings = new ArrayList<Double>();
-    public static ArrayList<teamSetup> loadedTeams;
+    public static ArrayList<teamSetup> loadedTeams = App.seasonData.loadedTeams;
     ArrayList<aeroPart> aeroParts = new ArrayList<aeroPart>();
     seasonSettings season = new seasonSettings(
         "",
@@ -104,10 +105,11 @@ public class champStandings extends App implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         loadingTeamIndex = 0;
         season = jsonReader.parseSeasonSettings();
-        loadedTeams = new ArrayList<teamSetup>();
-
-        loadTeamlist();
-        if (loadedTeams.size() == 0) {}
+        
+        if (Objects.isNull(loadedTeams)) {
+            loadedTeams = new ArrayList<teamSetup>();
+            loadTeamlist();
+        }
         try {
             generateTeamStandingUi();
         } catch (IOException e) {

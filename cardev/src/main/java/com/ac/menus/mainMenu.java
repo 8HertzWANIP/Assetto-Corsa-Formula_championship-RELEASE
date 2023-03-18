@@ -47,15 +47,17 @@ public class mainMenu extends App implements Initializable{
     @FXML
     void btnLoadSeasonClick(ActionEvent event) throws IOException {
         if (loadedProfile != "") {
-            test(jsonReader.parseSeasonSettings());
+            App.setSeasonData();
+            loadSeason(jsonReader.parseSeasonSettings());
         }
     }
 
-    void test(seasonSettings season) throws IOException {
+    void loadSeason(seasonSettings season) throws IOException {
         if (season.getCurrentRace() > season.getRaceCount()) {
             System.out.println("Season finished");
             setRoot("endOfSeason");
         } else {
+            // Load the season and set/reset values
             setRoot("teamMenu");
         }
     }

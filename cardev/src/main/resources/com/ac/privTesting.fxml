@@ -123,6 +123,18 @@
                               </DropShadow>
                            </effect>
                         </Label>
+                        <Label fx:id="lblFacilityName" layoutX="942.0" layoutY="31.0" text="PRIVATE-TESTING" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="5.0" radius="2.0" spread="1.0" width="5.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">

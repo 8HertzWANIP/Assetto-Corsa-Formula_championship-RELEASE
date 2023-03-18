@@ -125,7 +125,8 @@ public class teamFacilitiesWindow implements Initializable{
 
     @FXML
     void btnGoToPrivTestClick(ActionEvent event) throws IOException {
-        App.setRoot("privTesting");
+        if(season.regulations.privTesting)
+            App.setRoot("privTesting");
     }
 
     @FXML
