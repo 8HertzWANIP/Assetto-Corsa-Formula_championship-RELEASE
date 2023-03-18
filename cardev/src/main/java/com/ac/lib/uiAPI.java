@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 import javax.swing.JFileChooser;
@@ -35,12 +36,12 @@ public interface uiAPI {
      * @return Currency String
      */
     public static String setCurrencyFormat(int money) {
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.GERMANY);
         String moneyString = formatter.format(money);
-        if (moneyString.endsWith(",00")) {
-            int centsIndex = moneyString.lastIndexOf(",00");
+        if (moneyString.endsWith(",00 €")) {
+            int centsIndex = moneyString.lastIndexOf(",00 €");
             if (centsIndex != -1) {
-                moneyString = moneyString.substring(1, centsIndex);
+                moneyString = moneyString.substring(0, centsIndex);
             }
         }
         return moneyString;

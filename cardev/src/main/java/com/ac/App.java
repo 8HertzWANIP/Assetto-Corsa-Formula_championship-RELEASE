@@ -29,7 +29,7 @@ import com.ac.lib.seasonData;
  * JavaFX App test
  */
 public class App extends Application {
-    protected static String currentVersion = "ALPHA-v0.2.3";
+    protected static String currentVersion = "ALPHA-v0.2.4";
 
     fileReader fParser = new fileReader();
     ArrayList<aeroPart> aeroParts = fParser.getAeroParts();
