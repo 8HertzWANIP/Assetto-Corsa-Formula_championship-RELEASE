@@ -1,5 +1,6 @@
 package com.ac.menus;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
 import com.ac.App;
@@ -23,8 +25,10 @@ import com.ac.seasons.newSeason.teamSetup;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -91,12 +95,14 @@ public class teamMenu extends App implements Initializable {
 
     @FXML
     void btnChampStandingsClick(ActionEvent event) throws IOException {
-        App.setRoot("champStandings");
+        App.setRoot(new FXMLLoader(getClass().getResource("/champStandings.fxml")));
+
     }
 
     @FXML
     void btnPerformanceChartClick(ActionEvent event) throws IOException {
-        App.setRoot("carPerformanceChart");
+        App.setRoot(new FXMLLoader(getClass().getResource("/carPerformanceChart.fxml")));
+
     }
 
     @FXML
@@ -110,20 +116,23 @@ public class teamMenu extends App implements Initializable {
 
     @FXML
     void btnMainMenuClick(ActionEvent event) throws IOException {
-        App.setRoot("landingPage");
+        App.setRoot(new FXMLLoader(getClass().getResource("/landingPage.fxml")));
+
     }
 
     @FXML
     void btnStartRaceClick(ActionEvent event) throws IOException {
         if (season.getCurrentRace() > season.getRaceCount()) {
             try {
-                App.setRoot("endOfSeason");
+        App.setRoot(new FXMLLoader(getClass().getResource("/endOfSeason.fxml")));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             try {
-                App.setRoot("startRace");
+        App.setRoot(new FXMLLoader(getClass().getResource("/startRace.fxml")));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -131,19 +140,23 @@ public class teamMenu extends App implements Initializable {
     }
 
     @FXML
-    void btnStartRaceExit(MouseEvent event) {
+    void btnStartRaceExit(MouseEvent event) throws IOException {
         ImageInput imgInputRace = new ImageInput();
-        Image imgRace = new Image("file:cardev/src/main/resources/com/ac/images/indexgrey(e).png");
-        imgInputRace.setSource(imgRace);
+        URL url = getClass().getResource("/images/indexgrey(e).png");
+        BufferedImage imgRace = ImageIO.read(url);
+        Image image = SwingFXUtils.toFXImage(imgRace, null);
+        imgInputRace.setSource(image);
         btnStartRace.setEffect(imgInputRace);
 
     }
 
     @FXML
-    void btnStartRaceHover(MouseEvent event) {
+    void btnStartRaceHover(MouseEvent event) throws IOException {
         ImageInput imgInputRace = new ImageInput();
-        Image imgRace = new Image("file:cardev/src/main/resources/com/ac/images/index2(e).png");
-        imgInputRace.setSource(imgRace);
+        URL url = getClass().getResource("/images/index2(e).png");
+        BufferedImage imgRace = ImageIO.read(url);
+        Image image = SwingFXUtils.toFXImage(imgRace, null);
+        imgInputRace.setSource(image);
         btnStartRace.setEffect(imgInputRace);
 
     }
@@ -152,13 +165,13 @@ public class teamMenu extends App implements Initializable {
     void btnfacilitiesClick(ActionEvent event) throws IOException {
         if (season.getCurrentRace() > season.getRaceCount()) {
             try {
-                App.setRoot("endOfSeason");
+                App.setRoot(new FXMLLoader(getClass().getResource("/endOfSeason.fxml")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             try {
-                App.setRoot("Facilities");
+                App.setRoot(new FXMLLoader(getClass().getResource("/Facilities.fxml")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -167,18 +180,22 @@ public class teamMenu extends App implements Initializable {
     }
     
     @FXML
-    void btnfacilitiesExit(MouseEvent event) {
+    void btnfacilitiesExit(MouseEvent event) throws IOException {
         ImageInput imgInput = new ImageInput();
-        Image img = new Image("file:cardev/src/main/resources/com/ac/images/campusgrey(e).png");
-        imgInput.setSource(img);
+        URL url = getClass().getResource("/images/campusgrey(e).png");
+        BufferedImage imgRace = ImageIO.read(url);
+        Image image = SwingFXUtils.toFXImage(imgRace, null);
+        imgInput.setSource(image);
         btnfacilities.setEffect(imgInput);
     }
 
     @FXML
-    void btnfacilitiesHover(MouseEvent event) {
+    void btnfacilitiesHover(MouseEvent event) throws IOException {
         ImageInput imgInput = new ImageInput();
-        Image img = new Image("file:cardev/src/main/resources/com/ac/images/campus(e).png");
-        imgInput.setSource(img);
+        URL url = getClass().getResource("/images/campus(e).png");
+        BufferedImage imgRace = ImageIO.read(url);
+        Image image = SwingFXUtils.toFXImage(imgRace, null);
+        imgInput.setSource(image);
         btnfacilities.setEffect(imgInput);
     }
 
@@ -230,6 +247,11 @@ public class teamMenu extends App implements Initializable {
         txtResearch.setText(Integer.toString(facilities.resDev.getResearchPoints()));
         recTeamColor.setFill(Color.valueOf(playerTeam.getTeamColor()));
         txtTeamName.setText(playerTeam.getTeamName());
+
+        URL facilitiesImageUrl = getClass().getResource("/images/campusgrey(e).png");
+        URL startRaceImageUrl = getClass().getResource("/images/indexgrey(e).png");
+        btnStartRace.setEffect(uiAPI.setDfImages(startRaceImageUrl));
+        btnfacilities.setEffect(uiAPI.setDfImages(facilitiesImageUrl));
     }
 
     private void loadTeamlistCombobox() {

@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -54,9 +55,11 @@ public class incomeWindow implements Initializable {
         jsonWriter.savePartsToJson(inventory, playerTeam);
         App.seasonData.loadSeasonData();
         if (season.getCurrentRace() > season.getRaceCount())
-            App.setRoot("endOfSeason");
+            App.setRoot(new FXMLLoader(getClass().getResource("/endOfSeason.fxml")));
+
         else
-            App.setRoot("teamMenu");
+            App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+
     }
 
     @Override

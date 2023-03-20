@@ -304,8 +304,7 @@ public class researchDevelopment extends App implements Initializable{
     @FXML
     void btnReturnClick(ActionEvent event) throws IOException {
         saveFileData();
-        App.setRoot("Facilities");
-
+        App.setRoot(new FXMLLoader(getClass().getResource("/Facilities.fxml")));
     }
 
     @FXML
@@ -521,7 +520,7 @@ public class researchDevelopment extends App implements Initializable{
         if (partsToLoad.equals("installed") && installedPartPanes.size() == 0) {
             for (uiIndex = 0; uiIndex < inventory.length; uiIndex++) {
                 if (uiIndex < 10) {
-                    URL url = new File("cardev/src/main/resources/com/ac/aeropartObject.fxml").toURI().toURL();
+                    URL url = getClass().getResource("/aeropartObject.fxml");
                     Pane newLoadedPane =  FXMLLoader.load(url);
                     newLoadedPane.setLayoutX(320);
                     newLoadedPane.setLayoutY(257 + (105 * uiIndex));
@@ -539,7 +538,7 @@ public class researchDevelopment extends App implements Initializable{
             }
             for (uiIndex = 9; uiIndex < inventory.length; uiIndex++) {
                 System.out.println("index [" + uiIndex + "]");
-                URL url = new File("cardev/src/main/resources/com/ac/aeropartObject.fxml").toURI().toURL();
+                URL url = getClass().getResource("/aeropartObject.fxml");
                 Pane newLoadedPane =  FXMLLoader.load(url);
                 newLoadedPane.setLayoutX(320);
                 newLoadedPane.setLayoutY(257 + (105 * (uiIndex - 9)));
@@ -558,7 +557,7 @@ public class researchDevelopment extends App implements Initializable{
         } else if (partsToLoad.equals("constructed") && newPartPanes.size() == 0) {
             for (uiIndex = 0; uiIndex < inventory.length; uiIndex++) {
                 if (uiIndex < 10) {
-                    URL url = new File("cardev/src/main/resources/com/ac/aeropartObject.fxml").toURI().toURL();
+                    URL url = getClass().getResource("/aeropartObject.fxml");
                     Pane newLoadedPane =  FXMLLoader.load(url);
                     newLoadedPane.setLayoutX(320);
                     newLoadedPane.setLayoutY(257 + (105 * uiIndex));
@@ -576,7 +575,7 @@ public class researchDevelopment extends App implements Initializable{
             }
             for (uiIndex = 9; uiIndex < inventory.length; uiIndex++) {
                 System.out.println("index [" + uiIndex + "]");
-                URL url = new File("cardev/src/main/resources/com/ac/aeropartObject.fxml").toURI().toURL();
+                URL url = getClass().getResource("/aeropartObject.fxml");
                 Pane newLoadedPane =  FXMLLoader.load(url);
                 newLoadedPane.setLayoutX(320);
                 newLoadedPane.setLayoutY(257 + (105 * (uiIndex - 9)));

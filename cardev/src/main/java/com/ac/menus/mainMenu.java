@@ -55,10 +55,10 @@ public class mainMenu extends App implements Initializable{
     void loadSeason(seasonSettings season) throws IOException {
         if (season.getCurrentRace() > season.getRaceCount()) {
             System.out.println("Season finished");
-            setRoot("endOfSeason");
+            setRoot(new FXMLLoader(getClass().getResource("/endOfSeason.fxml")));
         } else {
             // Load the season and set/reset values
-            setRoot("teamMenu");
+            setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
         }
     }
 
@@ -70,7 +70,7 @@ public class mainMenu extends App implements Initializable{
 
     @FXML
     void startNewSeason(ActionEvent event) throws IOException {
-        App.setRoot("newSeason");
+        App.setRoot(new FXMLLoader(getClass().getResource("/newSeason.fxml")));
     }
 
     public void changeStage(Stage stage, String fxmlString) throws IOException {

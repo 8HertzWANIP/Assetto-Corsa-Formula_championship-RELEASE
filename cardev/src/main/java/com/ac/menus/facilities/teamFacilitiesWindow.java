@@ -1,10 +1,12 @@
 package com.ac.menus.facilities;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
 import com.ac.App;
@@ -14,8 +16,10 @@ import com.ac.lib.uiAPI;
 import com.ac.seasons.newSeason.seasonSettings;
 import com.ac.seasons.newSeason.teamSetup;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -115,18 +119,24 @@ public class teamFacilitiesWindow implements Initializable{
 
     @FXML
     void btnGoToResDevClick(ActionEvent event) throws IOException {
-        App.setRoot("researchDevelopment");
+        App.setRoot(new FXMLLoader(getClass().getResource("/researchDevelopment.fxml")));
+
+
     }
 
     @FXML
     void btnGoToWindTunnelClick(ActionEvent event) throws IOException {
-        App.setRoot("windTunnel");
+        App.setRoot(new FXMLLoader(getClass().getResource("/windTunnel.fxml")));
+
+
     }
 
     @FXML
     void btnGoToPrivTestClick(ActionEvent event) throws IOException {
         if(season.regulations.privTesting)
-            App.setRoot("privTesting");
+            App.setRoot(new FXMLLoader(getClass().getResource("/privTesting.fxml")));
+
+
     }
 
     @FXML
@@ -163,7 +173,9 @@ public class teamFacilitiesWindow implements Initializable{
 
     @FXML
     void btnReturnClick(ActionEvent event) throws IOException {
-        App.setRoot("teamMenu");
+        App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+
+
     }
 
     @FXML
@@ -213,13 +225,27 @@ public class teamFacilitiesWindow implements Initializable{
         // PrivTest UI
         if(season.regulations.privTesting) {
             lblPrivTestAllowed.setText("Allowed by regulations");
-            Image imgAllowed = new Image("file:cardev/src/main/resources/com/ac/images/private-testing.png");
-            imgPrivTest.setImage(imgAllowed);
+            URL url = getClass().getResource("/images/private-testing.png");
+            BufferedImage imgRace = null;
+            try {
+                imgRace = ImageIO.read(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Image image = SwingFXUtils.toFXImage(imgRace, null);
+            imgPrivTest.setImage(image);
             lblPrivTestCost.setText("Cost: €" + uiAPI.setCurrencyFormat(sessionCost));
         } else {
             lblPrivTestAllowed.setText("Not allowed by regulations");
-            Image imgNotAllowed = new Image("file:cardev/src/main/resources/com/ac/images/private-testing-grey.png");
-            imgPrivTest.setImage(imgNotAllowed);
+            URL url = getClass().getResource("/images/private-testing-grey.png");
+            BufferedImage imgRace = null;
+            try {
+                imgRace = ImageIO.read(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Image image = SwingFXUtils.toFXImage(imgRace, null);
+            imgPrivTest.setImage(image);
             lblPrivTestCost.setText("Cost: € ------");
             btnGoToPrivTest.setDisable(true);
         }

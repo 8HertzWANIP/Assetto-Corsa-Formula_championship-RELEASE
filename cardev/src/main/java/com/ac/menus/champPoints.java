@@ -141,7 +141,9 @@ public class champPoints extends App implements Initializable {
         fastestLapPoints = 1;
         champPoints.setFinishingPosition(1);
         champPoints.setLoadingTeamIndex(0);
-        App.setRoot("champPoints");
+            App.setRoot(new FXMLLoader(getClass().getResource("/champPoints.fxml")));
+
+        
     }
 
     @FXML
@@ -163,9 +165,11 @@ public class champPoints extends App implements Initializable {
         season.setCurrentRace(season.getCurrentRace() + 1);
         jsonWriter.saveSeasonSettings(season);
         if (season.getCurrentRace() > season.getRaceCount())
-            App.setRoot("endOfSeason");
+            App.setRoot(new FXMLLoader(getClass().getResource("/endOfSeason.fxml")));
+
         else
-            App.setRoot("incomeWindow");
+            App.setRoot(new FXMLLoader(getClass().getResource("/incomeWindow.fxml")));
+
     }
 
     @FXML
@@ -177,7 +181,8 @@ public class champPoints extends App implements Initializable {
     void btnReturnClick(ActionEvent event) throws IOException {
         champPoints.setFinishingPosition(1);
         champPoints.setLoadingTeamIndex(0);
-        App.setRoot("teamMenu");
+            App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+
     }
 
     @FXML
@@ -308,8 +313,8 @@ public class champPoints extends App implements Initializable {
                 setTeams.add(targetTeam.getTeamName());
                 loadingTeamIndex = targetTeam.getIndex();
                 System.out.println("Team index is: [" + loadingTeamIndex + "]");
-                URL url = new File("cardev/src/main/resources/com/ac/teamPointsObject.fxml").toURI().toURL();
-                Pane newLoadedPane =  FXMLLoader.load(url);
+                URL url = getClass().getResource("/teamPointsObject.fxml");
+                Pane newLoadedPane = FXMLLoader.load(url);
                 newLoadedPane.setLayoutX(10);
                 newLoadedPane.setLayoutY(45 + (60 * i));
                 champPointsPane.getChildren().add(newLoadedPane);

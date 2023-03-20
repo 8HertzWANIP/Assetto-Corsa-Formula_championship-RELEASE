@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -270,7 +271,8 @@ public class newSeason extends App implements Initializable{
             
             App.loadedProfile = txtProfileName.getText();
             App.printLoadedProfile();
-            App.setRoot("seasonRegulations");
+            App.setRoot(new FXMLLoader(getClass().getResource("/seasonRegulations.fxml")));
+
         
         // no profile namme set
         } 
@@ -278,7 +280,8 @@ public class newSeason extends App implements Initializable{
     }
     @FXML
     void btnReturnToMainMenu(ActionEvent event) throws IOException {
-        App.setRoot("landingpage");
+        App.setRoot(new FXMLLoader(getClass().getResource("/landingpage.fxml")));
+
     }
 
     @Override

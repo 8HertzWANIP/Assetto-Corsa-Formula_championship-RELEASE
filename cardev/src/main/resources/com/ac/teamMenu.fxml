@@ -181,7 +181,7 @@
                                                    <effect>
                                                       <ImageInput>
                                                          <source>
-                                                            <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/indexgrey(e).png" />
+                                                            <Image url="file:" />
                                                          </source>
                                                       </ImageInput>
                                                    </effect>
@@ -194,7 +194,7 @@
                                                    <effect>
                                                       <ImageInput>
                                                          <source>
-                                                            <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/campusgrey(e).png" />
+                                                            <Image url="file:" />
                                                          </source>
                                                       </ImageInput>
                                                    </effect>

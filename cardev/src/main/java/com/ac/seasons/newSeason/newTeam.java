@@ -17,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -110,7 +111,7 @@ public class newTeam extends App implements Initializable {
             if (teamIndex > newSeason.season.getTeamCount()) {
                 jsonWriter.saveSeasonSettings(newSeason.season);
                 carScaler.scaleCars(teamList);
-                App.setRoot("teamMenu");
+                App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
             }
             else {
                 // Increment team number.
@@ -128,12 +129,14 @@ public class newTeam extends App implements Initializable {
 
     @FXML
     void btnReturnSeasonSetupClick(ActionEvent event) throws IOException {
-        App.setRoot("casFolder");
+        App.setRoot(new FXMLLoader(getClass().getResource("/casFolder.fxml")));
+
     }
 
     @FXML
     void btnReturnToMainMenu(ActionEvent event) throws IOException {
-        App.setRoot("landingPage");
+        App.setRoot(new FXMLLoader(getClass().getResource("/landingPage.fxml")));
+
     }
 
     @FXML
@@ -214,7 +217,13 @@ public class newTeam extends App implements Initializable {
         cmbPhil.setItems(FXCollections.observableArrayList(philosophyArrayList));
         cmbPers.setItems(FXCollections.observableArrayList(personalitieArrayList));
         cmbPrevPos.setItems(FXCollections.observableArrayList(positions));
+        cmbPrevPos.setValue(1);
+        System.out.println("cmbPrevPos: " + cmbPrevPos.getValue());
         setupNewTeam();
+        previousSeasonPosition = cmbPrevPos.getValue();
+        setStartingFunds();
+        setResearch();
+        targetTeam.champPos = previousSeasonPosition;
         verifyTeamInfo();
     }
 

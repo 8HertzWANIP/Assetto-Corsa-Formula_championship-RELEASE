@@ -3,14 +3,48 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ac</groupId>
   <artifactId>cardev-ALPHA-v</artifactId>
-  <version>0.2.4</version>
+  <version>0.2.6</version>
   <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources/com/ac</directory>
+        <includes>
+          <include>**/*.fxml</include>
+          <include>**/*.png</include>
+        </includes>
+      </resource>
+    </resources>
     <plugins>
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.8</version>
+        <configuration>
+          <mainClass>com.ac.SuperMain</mainClass>
+          <options>
+            <option>--module-path "C:\Program Files\Java\javafx-sdk-19.0.2.1\bin"</option>
+            <option>--add-modules javafx.controls,javafx.fxml,javafx.swing</option>
+          </options>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
           <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>com.ac.SuperMain</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
       <plugin>

@@ -156,12 +156,12 @@ public class aeroImprove extends App implements Initializable{
 
     @FXML
     void btnChampStandingsClick(ActionEvent event) throws IOException {
-        App.setRoot("champStandings");
+        // App.setRoot("champStandings");
     }
 
     @FXML
     void btnPerformanceChartClick(ActionEvent event) throws IOException {
-        App.setRoot("carPerformanceChart");
+        // App.setRoot("carPerformanceChart");
     }
 
     @FXML
@@ -221,7 +221,7 @@ public class aeroImprove extends App implements Initializable{
 
     @FXML
     void btnRunAiClick(ActionEvent event) throws IOException {
-        App.setRoot("startRace");
+        // App.setRoot("startRace");
         // ArrayList<String> teamList = new ArrayList<String>();
         // for (int i = 0; i < season.getTeamCount(); i++) {
         //     teamList.add(season.loadTeamlist().get(i));

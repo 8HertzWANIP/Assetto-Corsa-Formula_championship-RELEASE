@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -73,12 +74,12 @@ public class seasonPointsWindow extends newSeason {
     void btnContinueClick(ActionEvent event) throws IOException {
         jsonWriter.saveSeasonSettings(loadedSeason);
         newSeason.season = loadedSeason;
-        App.setRoot("carsFolder");
+        App.setRoot(new FXMLLoader(getClass().getResource("/carsFolder.fxml")));
     }
 
     @FXML
     void btnReturnToMainMenu(ActionEvent event) throws IOException {
-        App.setRoot("seasonRegulations");
+        App.setRoot(new FXMLLoader(getClass().getResource("/seasonRegulations.fxml")));
     }
 
     @FXML

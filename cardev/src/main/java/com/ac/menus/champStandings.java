@@ -76,7 +76,8 @@ public class champStandings extends App implements Initializable {
 
     @FXML
     void btnAwardPointsClick(ActionEvent event) throws IOException {
-        App.setRoot("champPoints");
+        App.setRoot(new FXMLLoader(getClass().getResource("/champPoints.fxml")));
+
 
     }
 
@@ -87,7 +88,8 @@ public class champStandings extends App implements Initializable {
 
     @FXML
     void btnReturnClick(ActionEvent event) throws IOException {
-        App.setRoot("teamMenu");
+        App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+
 
     }
 
@@ -164,7 +166,7 @@ public class champStandings extends App implements Initializable {
                 setTeams.add(targetTeam.getTeamName());
                 loadingTeamIndex = targetTeam.getIndex();
                 System.out.println("Team index is: [" + loadingTeamIndex + "]");
-                URL url = new File("cardev/src/main/resources/com/ac/teamObject.fxml").toURI().toURL();
+                URL url = getClass().getResource("/teamObject.fxml");
                 Pane newLoadedPane =  FXMLLoader.load(url);
                 newLoadedPane.setLayoutX(10);
                 newLoadedPane.setLayoutY(45 + (60 * i));

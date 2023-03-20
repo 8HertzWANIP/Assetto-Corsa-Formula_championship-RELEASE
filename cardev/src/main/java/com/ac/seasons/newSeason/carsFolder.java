@@ -11,6 +11,7 @@ import com.ac.App;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -85,7 +86,7 @@ public class carsFolder implements Initializable {
             txtContentCars.setText("CARS FOLDER NOT VALID");
             pathToCarFolder = "";
         } else {
-            App.setRoot("newTeam");
+            App.setRoot(new FXMLLoader(getClass().getResource("/newTeam.fxml")));
         }
 
     }
@@ -102,12 +103,12 @@ public class carsFolder implements Initializable {
 
     @FXML
     void btnReturnSeasonSetupClick(ActionEvent event) throws IOException {
-        App.setRoot("seasonPointsWindow");
+        App.setRoot(new FXMLLoader(getClass().getResource("/seasonPointsWindow.fxml")));
     }
 
     @FXML
     void btnReturnToMainMenu(ActionEvent event) throws IOException {
-        App.setRoot("landingPage");
+        App.setRoot(new FXMLLoader(getClass().getResource("/landingPage.fxml")));
     }
 
     @FXML

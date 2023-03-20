@@ -1,8 +1,6 @@
 package com.ac.menus;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import com.ac.App;
 
@@ -24,8 +22,8 @@ public class newVersion extends App {
 
     @FXML
     void btnContinueClick(ActionEvent event) throws IOException {
-        URL urlLand = new File("cardev/src/main/resources/com/ac/" + defaultWindow + ".fxml").toURI().toURL();
-        mainScene = new Scene(FXMLLoader.load(urlLand), 1280, 720);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/landingPage.fxml"));
+        mainScene = new Scene(loader.load(), 1280, 720);
         scene = mainScene;
         loadedStage.setScene(mainScene);
         loadedStage.setResizable(false);
@@ -35,7 +33,7 @@ public class newVersion extends App {
     @FXML
     void btnVersionClick(ActionEvent event) {
         try {
-            String url = "https://www.patreon.com/Formula_Championship";
+            String url = "https://www.patreon.com/Formula_Championship/about";
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
         }
         catch (java.io.IOException e) {

@@ -7,6 +7,7 @@ import com.ac.fileparsing.jsonWriter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
@@ -26,11 +27,11 @@ public class regulations {
         newSeason.season.addSeasonRegs();
         newSeason.season.regulations.setPrivTesting(chkPrivTestingAllowed.isSelected());
         jsonWriter.saveSeasonSettings(newSeason.season);
-        App.setRoot("seasonPointsWindow");
+        App.setRoot(new FXMLLoader(getClass().getResource("/seasonPointsWindow.fxml")));
     }
 
     @FXML
     void btnReturnToMainMenu(ActionEvent event) throws IOException {
-        App.setRoot("newSeason");
+        App.setRoot(new FXMLLoader(getClass().getResource("/newSeason.fxml")));
     }
 }

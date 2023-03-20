@@ -62,7 +62,7 @@
                <effect>
                   <ImageInput>
                      <source>
-                        <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/lowest-df.png" />
+                        <Image url="file:" />
                      </source>
                   </ImageInput>
                </effect></Button>
@@ -70,7 +70,7 @@
                <effect>
                   <ImageInput>
                      <source>
-                        <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/low-df.png" />
+                        <Image url="file:" />
                      </source>
                   </ImageInput>
                </effect></Button>
@@ -78,7 +78,7 @@
                <effect>
                   <ImageInput>
                      <source>
-                        <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/mid-df.png" />
+                        <Image url="file:" />
                      </source>
                   </ImageInput>
                </effect></Button>
@@ -86,7 +86,7 @@
                <effect>
                   <ImageInput>
                      <source>
-                        <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/high-df.png" />
+                        <Image url="file:" />
                      </source>
                   </ImageInput>
                </effect></Button>
@@ -94,7 +94,7 @@
                <effect>
                   <ImageInput>
                      <source>
-                        <Image url="file:/G:/ACFC/cardev/src/main/resources/com/ac/images/highest-df.png" />
+                        <Image url="file:" />
                      </source>
                   </ImageInput>
                </effect></Button>

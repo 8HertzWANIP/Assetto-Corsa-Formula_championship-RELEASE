@@ -1,12 +1,16 @@
 package com.ac.lib;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
 import com.ac.App;
@@ -19,7 +23,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ImageInput;
+import javafx.scene.image.Image;
 
 public interface uiAPI {
     
@@ -106,5 +113,18 @@ public interface uiAPI {
         });
         ObservableList<String> teams = FXCollections.observableArrayList(directories);
         return teams;
+    }
+
+    public static ImageInput setDfImages(URL url) {
+        ImageInput imgInput = new ImageInput();
+        BufferedImage imgRace = null;
+        try {
+            imgRace = ImageIO.read(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image image = SwingFXUtils.toFXImage(imgRace, null);
+        imgInput.setSource(image);
+        return imgInput;
     }
 }

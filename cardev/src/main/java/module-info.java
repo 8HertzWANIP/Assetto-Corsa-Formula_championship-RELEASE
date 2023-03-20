@@ -2,6 +2,8 @@ module com.ac {
     requires transitive javafx.graphics;
     requires transitive javafx.controls;
     requires transitive javafx.fxml;
+    requires javafx.base;
+    requires javafx.swing;
     requires java.desktop;
     requires com.google.gson;
 	requires org.apache.httpcomponents.httpclient;

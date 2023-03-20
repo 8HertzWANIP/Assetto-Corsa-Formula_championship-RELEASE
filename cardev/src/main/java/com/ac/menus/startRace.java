@@ -1,36 +1,37 @@
 package com.ac.menus;
 
-import java.io.File;
-import java.io.FilenameFilter;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import javax.swing.JFileChooser;
+import javax.imageio.ImageIO;
 
 import com.ac.App;
-import com.ac.AI.aiAPI;
 import com.ac.AI.aiController;
 import com.ac.fileparsing.fileReader;
 import com.ac.fileparsing.jsonReader;
 import com.ac.fileparsing.jsonWriter;
 import com.ac.lib.aeroPart;
 import com.ac.lib.aeroPartInventory;
+import com.ac.lib.uiAPI;
 import com.ac.seasons.newSeason.seasonSettings;
 import com.ac.seasons.newSeason.teamSetup;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.ImageInput;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -131,7 +132,8 @@ public class startRace extends App implements Initializable {
     @FXML
     void btnCancelRaceClick(ActionEvent event) throws IOException {
         season.setRaceCanceled(true);
-        App.setRoot("teamMenu");
+            App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+
     }
 
     @FXML
@@ -140,15 +142,18 @@ public class startRace extends App implements Initializable {
             season.setCurrentRace(season.getCurrentRace() + 1);
             System.out.println("saved race Count: [" + season.getCurrentRace() + "]");
             jsonWriter.saveSeasonSettings(season);
-            App.setRoot("incomeWindow");
+            App.setRoot(new FXMLLoader(getClass().getResource("/incomeWindow.fxml")));
+
         } else {
-            App.setRoot("champPoints");
+            App.setRoot(new FXMLLoader(getClass().getResource("/champPoints.fxml")));
+
         }
     }
 
     @FXML
     void btnReturnClick(ActionEvent event) throws IOException {
-        App.setRoot("teamMenu");
+            App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+
     }
 
     @FXML
@@ -172,7 +177,8 @@ public class startRace extends App implements Initializable {
             lblPreseasonTesting.setVisible(false);
             chkPreSeasonTesting.setVisible(false);
             jsonWriter.saveSeasonSettings(season);
-            App.setRoot("incomeWindow");
+            App.setRoot(new FXMLLoader(getClass().getResource("/incomeWindow.fxml")));
+
         } else {
             season.setTrackDownforceInt((int) Math.round(sldDownforceLvl.getValue()));
             season.setRaceCanceled(true);
@@ -182,40 +188,6 @@ public class startRace extends App implements Initializable {
             btnReturn.setDisable(true);
         }
         jsonWriter.saveSeasonSettings(season);
-    }
-
-    private void loadTeamlist() {
-        loadedTeams = new ArrayList<teamSetup>();
-        loadedInventories = new ArrayList<aeroPartInventory[]>();
-        File file = new File(new JFileChooser().getFileSystemView().getDefaultDirectory().toString() + "\\Ac Cardev save data\\" + loadedProfile);
-        String[] directories = file.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
-            }
-        });
-        // System.out.println(Arrays.toString(directories));
-        ObservableList<String> teams = FXCollections.observableArrayList(directories);
-        
-        ArrayList<String> teamList = new ArrayList<String>();
-        for (int i = 0; i < season.getTeamCount(); i++) {
-            teamList.add(teams.get(i));
-        }
-
-        for (int i = 0; i < season.teamCount; i++) {
-            if (teamList.get(i) != null) {
-                loadedTeams.add(jsonReader.parseTeam(teamList.get(i)));
-                aiAPI.doFacilitiesExist(loadedTeams.get(i), season);
-                if (loadedTeams.get(i).controller.equals("Player Team") && !season.getPlayerTeam().equals(loadedTeams.get(i).getTeamName())) {
-                    loadedTeams.get(i).setController("AI");
-                    jsonWriter.saveTeam(loadedTeams.get(i));
-                }
-                loadedInventories.add(jsonReader.parseAeroParts(loadedTeams.get(i)));
-                System.out.println("Team: [" + loadedTeams.get(i).getTeamName() + "] loaded");
-            } else {
-                System.out.println("Target team is null: [" + teamList.get(i) + "]");
-            }
-        }
     }
 
     private void setTrackDownforceLevel(int downforceSetting) {
@@ -348,6 +320,16 @@ public class startRace extends App implements Initializable {
         setDfUi(downforceLevel);
         System.out.print("Current race: [" + season.getCurrentRace() + "]");
         lblRaceCount.setText(season.getCurrentRace() + " / " + season.getRaceCount());
+        URL lowestUrl = getClass().getResource("/images/lowest-df.png");
+        URL lowUrl = getClass().getResource("/images/low-df.png");
+        URL midUrl = getClass().getResource("/images/mid-df.png");
+        URL highUrl = getClass().getResource("/images/high-df.png");
+        URL highestUrl = getClass().getResource("/images/highest-df.png");
+        btnDownforceInc.setEffect(uiAPI.setDfImages(lowestUrl));
+        btnDownforceMax.setEffect(uiAPI.setDfImages(lowUrl));
+        btnDownforceMin.setEffect(uiAPI.setDfImages(midUrl));
+        btnDownforceRed.setEffect(uiAPI.setDfImages(highUrl));
+        btnDownforceAvg.setEffect(uiAPI.setDfImages(highestUrl));
     }
 
     private void validateTeamSetupInfo() {

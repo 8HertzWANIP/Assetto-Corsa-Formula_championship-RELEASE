@@ -14,6 +14,7 @@ import com.ac.seasons.newSeason.teamSetup;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -65,7 +66,8 @@ public class endOfSeason implements Initializable {
 
     @FXML
     void btnReturnClick(ActionEvent event) throws IOException {
-        App.setRoot("landingPage");
+        App.setRoot(new FXMLLoader(getClass().getResource("/landingPage.fxml")));
+
     }
 
     @FXML

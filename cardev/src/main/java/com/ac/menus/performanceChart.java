@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -97,7 +98,8 @@ public class performanceChart extends App implements Initializable{
 
     @FXML
     void btnReturnClick(ActionEvent event) throws IOException {
-        App.setRoot("teamMenu");
+        App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+
     }
 
     @FXML

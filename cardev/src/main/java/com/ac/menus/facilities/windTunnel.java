@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -129,7 +130,8 @@ public class windTunnel implements Initializable {
         jsonWriter.saveFacilitiesToJson(facilities, playerTeam);
         jsonWriter.savePartsToJson(inventory, playerTeam);
         jsonWriter.saveTeam(playerTeam);
-        App.setRoot("Facilities");
+        App.setRoot(new FXMLLoader(getClass().getResource("/Facilities.fxml")));
+
     }
 
     @FXML
