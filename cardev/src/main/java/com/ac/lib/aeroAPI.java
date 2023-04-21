@@ -345,7 +345,6 @@ public interface aeroAPI {
      * Produced part stats are difference between max and current stats, devided by the resDev level
      * hidden improvement rate half of devCeiling + RP increase
      */
-
     public static aeroPartInventory.part generateNewAeroPart(seasonSettings season, aeroPartInventory[] inventory, int newPartIndex, int resDevLevel) {
         System.out.println("resDevLevel: [" + resDevLevel + "]");
         // research & development level override

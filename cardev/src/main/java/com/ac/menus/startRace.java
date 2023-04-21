@@ -156,6 +156,20 @@ public class startRace extends App implements Initializable {
 
     }
 
+    /**
+     * Java event handler that is triggered when the user clicks on the "Start Race" button.
+     * The method first hides a slider control, then checks if the race has been canceled or not. 
+     * If it hasn't been canceled, it initializes an AI controller with some loaded teams and inventories. 
+     * Otherwise, it sets a label to indicate that the AI teams have already been set up.
+     *
+     * If pre-season testing is selected, some settings are updated and saved before redirecting to another window. 
+     * Otherwise, some other settings are updated and saved before disabling/enabling certain buttons as needed for starting/canceling/finishing races.
+     *
+     * @param event An ActionEvent object representing the click event
+     *
+     * @throws InterruptedException Thrown if a thread is interrupted while waiting
+     * @throws IOException          Thrown if there's an error reading from or writing to a file
+     */
     @FXML
     void btnStartRaceClick(ActionEvent event) throws InterruptedException, IOException {
         sldDownforceLvl.setVisible(false);
@@ -325,11 +339,11 @@ public class startRace extends App implements Initializable {
         URL midUrl = getClass().getResource("/images/mid-df.png");
         URL highUrl = getClass().getResource("/images/high-df.png");
         URL highestUrl = getClass().getResource("/images/highest-df.png");
-        btnDownforceInc.setEffect(uiAPI.setDfImages(lowestUrl));
-        btnDownforceMax.setEffect(uiAPI.setDfImages(lowUrl));
-        btnDownforceMin.setEffect(uiAPI.setDfImages(midUrl));
-        btnDownforceRed.setEffect(uiAPI.setDfImages(highUrl));
-        btnDownforceAvg.setEffect(uiAPI.setDfImages(highestUrl));
+        btnDownforceMin.setEffect(uiAPI.setDfImages(lowestUrl));
+        btnDownforceRed.setEffect(uiAPI.setDfImages(lowUrl));
+        btnDownforceAvg.setEffect(uiAPI.setDfImages(midUrl));
+        btnDownforceInc.setEffect(uiAPI.setDfImages(highUrl));
+        btnDownforceMax.setEffect(uiAPI.setDfImages(highestUrl));
     }
 
     private void validateTeamSetupInfo() {

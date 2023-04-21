@@ -114,6 +114,11 @@ public class windTunnel implements Initializable {
 
     }
 
+    /**
+     * This method is executed when the "btnResearch" button is clicked. It performs some actions related to research and updates the UI accordingly.
+     *
+     * @param event The ActionEvent object that triggered this method
+     */
     @FXML
     void btnResearchClick(ActionEvent event) {
         facilities.resDev.setResearchPoints(facilities.resDev.getResearchPoints() + teamFacilities.returnTunnelCost("researchRP", season, facilities));
@@ -174,6 +179,11 @@ public class windTunnel implements Initializable {
     }
 
     @Override
+    /**
+     * Initializes the UI elements.
+     * Parses settings and data from JSON files, sets various UI elements based on this data,
+     * loads inventory information into memory, and sets additional UI elements based on facility information.
+     */ 
     public void initialize(URL location, ResourceBundle resources) {
         season = jsonReader.parseSeasonSettings();
         if (sandboxMode) {

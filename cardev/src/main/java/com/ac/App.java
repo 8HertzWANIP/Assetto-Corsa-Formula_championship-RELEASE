@@ -15,7 +15,8 @@ import com.google.gson.JsonObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import com.ac.fileparsing.fileReader;
@@ -37,7 +38,7 @@ public class App extends Application {
     public static String defaultWindow = "landingPage";
     public final String environment = "PROD";
     public static seasonData seasonData = null;
-    protected static String currentVersion = "ALPHA-v0.2.6";
+    protected static String currentVersion = "ALPHA-v0.2.7";
 
 
     @Override
@@ -45,35 +46,30 @@ public class App extends Application {
         if (!environment.equals("PROD")) {
             currentVersion = currentVersion + " - " + environment;
         }
+        
         String url = "https://api.github.com/repos/8HertzWANIP/Assetto-Corsa-Formula_championship-RELEASE/releases/latest";
         Boolean appUpToDate = null;
-
+        
         // Call github API to get release version of public repo
-    	try {
-            HttpResponse response;
-            DefaultHttpClient httpClient = new DefaultHttpClient();
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpGet getConnection = new HttpGet(url);
-            try {
-                response = httpClient.execute(getConnection);
-                String JSONString = EntityUtils.toString(response.getEntity(),
-                        "UTF-8");
-
-                Gson gson = new Gson();
-                JsonObject js = gson.fromJson(JSONString, JsonObject.class);
-                if (js.get("tag_name") != null) {
-                    appUpToDate = js.get("tag_name").toString().contains(currentVersion);
-                }
-    
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
+            HttpResponse response = httpClient.execute(getConnection);
+        
+            String JSONString = EntityUtils.toString(response.getEntity(), "UTF-8");
+        
+            Gson gson = new Gson();
+            JsonObject js = gson.fromJson(JSONString, JsonObject.class);
+            
+            if (js.get("tag_name") != null) {
+                appUpToDate = js.get("tag_name").toString().contains(currentVersion);
             }
-        } catch (Exception e) {
+        
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        
         // Check for new version on gitHub.
         if (!appUpToDate && !environment.equals("DEV") && !environment.equals("EA")) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/newVersionWindow.fxml"));
@@ -83,6 +79,7 @@ public class App extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/landingPage.fxml"));
             scene = new Scene(loader.load(), 1280, 720);
         }
+        
         loadedStage = stage;
         loadedStage.setScene(scene);
         loadedStage.setTitle("Assetto Corsa: Formula Championship - " + currentVersion);

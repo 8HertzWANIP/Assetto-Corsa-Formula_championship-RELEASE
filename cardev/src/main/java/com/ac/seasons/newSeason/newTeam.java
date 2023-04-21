@@ -10,6 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.ac.App;
 import com.ac.fileparsing.fileReader;
+import com.ac.fileparsing.jsonReader;
 import com.ac.fileparsing.jsonWriter;
 import com.ac.lib.carScaler;
 
@@ -111,7 +112,11 @@ public class newTeam extends App implements Initializable {
             if (teamIndex > newSeason.season.getTeamCount()) {
                 jsonWriter.saveSeasonSettings(newSeason.season);
                 carScaler.scaleCars(teamList);
-                App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+                App.setSeasonData();
+                if (!seasonData.unsupportedCarFound)
+                    App.setRoot(new FXMLLoader(getClass().getResource("/teamMenu.fxml")));
+                else
+                    App.setRoot(new FXMLLoader(getClass().getResource("/landingPage.fxml")));
             }
             else {
                 // Increment team number.

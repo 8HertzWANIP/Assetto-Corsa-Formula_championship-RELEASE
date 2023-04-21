@@ -6,6 +6,7 @@ import com.ac.menus.facilities.teamFacilities;
 import com.ac.seasons.newSeason.seasonSettings;
 import com.ac.seasons.newSeason.teamSetup;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,7 +27,10 @@ public class jsonWriter extends App
         }
  
         try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        
             String jsonString = gson.toJson(newTeamFac);
             out.write(jsonString);
         }  catch (Exception e) {
@@ -55,7 +59,10 @@ public class jsonWriter extends App
         }
  
         try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        
             String jsonString = gson.toJson(facilities);
             out.write(jsonString);
         }  catch (Exception e) {
@@ -84,7 +91,10 @@ public class jsonWriter extends App
         }
  
         try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        
             String jsonString = gson.toJson(season);
             out.write(jsonString);
         }  catch (Exception e) {
@@ -113,7 +123,10 @@ public class jsonWriter extends App
         }
  
         try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        
             String jsonString = gson.toJson(team);
             out.write(jsonString);
         }  catch (Exception e) {
@@ -142,7 +155,10 @@ public class jsonWriter extends App
         }
  
         try (PrintWriter out = new PrintWriter(new FileWriter(path))) {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
+        
             String jsonString = gson.toJson(inventory);
             out.write(jsonString);
         }  catch (Exception e) {

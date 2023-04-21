@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class mainMenu extends App implements Initializable{
@@ -34,10 +35,21 @@ public class mainMenu extends App implements Initializable{
     private Button btnNewSeason;
 
     @FXML
+    private Button btnDiscord;
+
+    @FXML
     private Button btnQuit;
 
     @FXML
     private ComboBox<String> cmbSelectSeason;
+
+    @FXML
+    private Label lblErrorContent;
+
+    @FXML
+    private Label lblErrorMsg;
+    
+    public static String unsupportedCars = "";
 
     @FXML
     void btnCloseWindow(ActionEvent event) {
@@ -48,7 +60,21 @@ public class mainMenu extends App implements Initializable{
     void btnLoadSeasonClick(ActionEvent event) throws IOException {
         if (loadedProfile != "") {
             App.setSeasonData();
-            loadSeason(jsonReader.parseSeasonSettings());
+            if (!seasonData.unsupportedCarFound)
+                loadSeason(jsonReader.parseSeasonSettings());
+            else
+                App.setRoot(new FXMLLoader(getClass().getResource("/landingPage.fxml")));
+        }
+    }
+
+    @FXML
+    void btnDiscordClick(ActionEvent event) throws IOException {
+        try {
+            String url = "https://discord.gg/JKHJzYA99w";
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+        }
+        catch (java.io.IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -99,5 +125,12 @@ public class mainMenu extends App implements Initializable{
         System.out.println(Arrays.toString(directories));
         ObservableList<String> test = FXCollections.observableArrayList(directories);
         cmbSelectSeason.setItems(test);
+
+        if (!unsupportedCars.equals("")) {
+            lblErrorMsg.setVisible(true);
+            lblErrorContent.setVisible(true);
+            lblErrorContent.setText(unsupportedCars);
+            unsupportedCars = "";
+        }
     }
 }

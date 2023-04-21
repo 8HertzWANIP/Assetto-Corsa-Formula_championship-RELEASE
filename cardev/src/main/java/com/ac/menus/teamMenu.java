@@ -105,40 +105,62 @@ public class teamMenu extends App implements Initializable {
 
     }
 
+    /**
+     * Resets all cars in the current season by scaling them to their default size.
+     * @param event The action event that triggered this method.
+     */
     @FXML
     void btnResetCars(ActionEvent event) {
+        // Create a new ArrayList of Strings to hold team names
         ArrayList<String> teamList = new ArrayList<String>();
+        
+        // Loop through each team in the current season and add its name to the list
         for (int i = 0; i < season.getTeamCount(); i++) {
             teamList.add(season.loadTeamlist().get(i));
         }
+        
+        // Scale all cars belonging to teams in the list back to their default size
         carScaler.scaleCars(teamList);
     }
 
+    /**
+     * Redirects user to main menu page when clicked.
+     * @param event The action event that triggered this method.
+     * @throws IOException If an I/O error occurs while loading the FXML file for the main menu page.
+     */
     @FXML
     void btnMainMenuClick(ActionEvent event) throws IOException {
+        // Load and display main menu page using FXMLLoader 
         App.setRoot(new FXMLLoader(getClass().getResource("/landingPage.fxml")));
-
     }
 
+    /**
+     * Redirects user to start race page if there are still races left in the current season,
+     * otherwise redirects user to end of season page. 
+     *
+     *@param	event	The action event that triggered this method.	
+    *@throws	IOException	If an I/O error occurs while loading either FXML file for start race or end of season pages. 
+    */
     @FXML
     void btnStartRaceClick(ActionEvent event) throws IOException {
-        if (season.getCurrentRace() > season.getRaceCount()) {
+        if (season.getCurrentRace() > season.getRaceCount()) {   // Check if there are any more races left in current racing session
+            
+            // If no more races left, load and display end-of-season screen using FXMLLoader  
             try {
-        App.setRoot(new FXMLLoader(getClass().getResource("/endOfSeason.fxml")));
-
+                App.setRoot(new FXMLLoader(getClass().getResource("/endOfSeason.fxml")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            try {
-        App.setRoot(new FXMLLoader(getClass().getResource("/startRace.fxml")));
-
+        } else {   // If there are still races left in current racing session
+            
+            // Load and display start race screen using FXMLLoader 
+            try {   
+                App.setRoot(new FXMLLoader(getClass().getResource("/startRace.fxml")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
     @FXML
     void btnStartRaceExit(MouseEvent event) throws IOException {
         ImageInput imgInputRace = new ImageInput();
